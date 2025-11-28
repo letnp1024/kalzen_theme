@@ -3,13 +3,20 @@
  * Handles video play button click and YouTube video modal
  */
 
+import { ParallaxScroll } from '../../helpers/ParallaxScroll';
+
 export class AboutUs {
   private playButton: HTMLElement | null;
   private videoUrl: string | null;
+  private imageElement: HTMLElement | null;
+  private imageWrapper: HTMLElement | null;
+  private parallaxInstance: ParallaxScroll | null = null;
 
   constructor() {
     this.playButton = document.querySelector('.about-us__play-button');
     this.videoUrl = this.playButton?.getAttribute('data-video-url') || null;
+    this.imageElement = document.querySelector('.about-us__image');
+    this.imageWrapper = document.querySelector('.about-us__image-wrapper');
     
     this.init();
   }
@@ -27,6 +34,9 @@ export class AboutUs {
 
     // Initialize FAQ accordion
     this.initFAQ();
+
+    // Initialize parallax scroll effect
+    this.initParallax();
   }
 
   /**
@@ -67,6 +77,23 @@ export class AboutUs {
           }
         }
       });
+    });
+  }
+
+  /**
+   * Initialize parallax scroll effect for the image
+   */
+  private initParallax(): void {
+    if (!this.imageElement || !this.imageWrapper) {
+      console.warn('AboutUs: Image element or wrapper not found for parallax');
+      return;
+    }
+
+    // Sử dụng ParallaxScroll helper
+    this.parallaxInstance = new ParallaxScroll(this.imageElement, this.imageWrapper, {
+      speed: 0.25,
+      scale: 1.25,
+      centered: true
     });
   }
 

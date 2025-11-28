@@ -4,9 +4,11 @@
 
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
+import { ParallaxScroll } from '../../helpers/ParallaxScroll';
 
 export class Services {
   private swiper: Swiper | null = null;
+  private parallaxInstances: ParallaxScroll[] = [];
 
   constructor() {
     this.init();
@@ -49,6 +51,30 @@ export class Services {
         },
       },
     });
+
+    // Initialize parallax for service card images
+    this.initParallax();
+  }
+
+  /**
+   * Initialize parallax scroll effect for service card images
+   */
+  private initParallax(): void {
+    // Get all service card images
+    const cardImages = document.querySelectorAll<HTMLElement>('.services__card-image');
+    const cardImageWrappers = document.querySelectorAll<HTMLElement>('.services__card-image-wrapper');
+
+    cardImages.forEach((image, index) => {
+      const wrapper = cardImageWrappers[index];
+      if (image && wrapper) {
+        const parallaxInstance = new ParallaxScroll(image, wrapper, {
+          speed: 0.25,
+          scale: 1.25,
+          centered: false
+        });
+        this.parallaxInstances.push(parallaxInstance);
+      }
+    });
   }
 
   /**
@@ -59,6 +85,12 @@ export class Services {
       this.swiper.destroy();
       this.swiper = null;
     }
+
+    // Destroy parallax instances
+    this.parallaxInstances.forEach(instance => {
+      instance.destroy();
+    });
+    this.parallaxInstances = [];
   }
 }
 
