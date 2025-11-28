@@ -7,6 +7,37 @@ $primary: #1A73E8; // Modern blue
 $primary-dark: darken($primary, 10%);
 $primary-light: lighten($primary, 10%);
 
+
+// Primary Gradient (center gradient with primary and primary lighten 50%)
+// Linear gradient: primary at center, primary-light-50 at edges
+$primary-gradient: linear-gradient(
+  to right,
+  $primary-dark 0%,
+  $primary-light 50%,
+  $primary-dark 100%
+);
+
+// Primary Radial Gradient (from center)
+$primary-gradient-radial: radial-gradient(
+  circle at center,
+  $primary-dark 0%,
+  $primary-light 100%
+);
+
+// Mixin for gradient text
+@mixin gradient-text {
+  background: $primary-gradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+// Mixin for gradient background
+@mixin gradient-background {
+  background: $primary-gradient;
+}
+
 // Secondary Colors
 $secondary-navy: #0F4C81; // Deep navy blue
 $secondary-light-blue: #E8EEF5; // Light gray-blue

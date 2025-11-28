@@ -145,12 +145,12 @@
         transition: $transition-base;
 
         i {
-          color: $primary;
+          @include gradient-text;
           font-size: 1rem;
         }
 
         &:hover {
-          color: $primary;
+          @include gradient-text;
         }
 
         @media (max-width: 768px) {
@@ -172,6 +172,10 @@
         &:hover {
           transform: scale(1.05);
         }
+      }
+
+      span {
+        @include gradient-text;
       }
 
       @media (max-width: 768px) {
@@ -260,7 +264,7 @@
       &:hover,
       &.active {
         color: $white;
-        background-color: $primary;
+        @include gradient-background;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba($primary, 0.3);
       }
@@ -354,8 +358,9 @@
       font-size: 1.125rem;
       font-weight: 600;
       border-radius: $border-radius-pill;
-      background-color: $primary;
-      border: 2px solid $primary;
+      @include gradient-background;
+      border: 2px solid transparent;
+      background-clip: padding-box;
       color: $white;
       text-decoration: none;
       display: inline-block;
@@ -380,8 +385,9 @@
       &:hover {
         transform: translateY(-3px);
         box-shadow: 0 12px 32px rgba($primary, 0.5);
-        background-color: $primary-dark;
-        border-color: $primary-dark;
+        @include gradient-background; // Giữ gradient khi hover
+        border-color: transparent;
+        background-clip: padding-box;
         color: $white;
 
         &::before {
@@ -527,6 +533,7 @@
     }
 
     span {
+      @include gradient-text;
       @media (max-width: 576px) {
         display: none;
       }
@@ -562,7 +569,7 @@
       &:hover,
       &.active {
         color: $white;
-        background-color: $primary;
+        @include gradient-background;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba($primary, 0.3);
       }

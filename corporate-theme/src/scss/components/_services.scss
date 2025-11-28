@@ -18,11 +18,11 @@
     padding: 1rem 2.5rem; // Cùng cỡ như nút Get In Touch
     font-size: 1.125rem; // Cùng cỡ như nút Get In Touch
     font-weight: 600; // Cùng cỡ như nút Get In Touch
-    color: $primary-light; // Màu chữ primary-light
+    @include gradient-text; // Màu chữ gradient
     margin: 0 0 15px 0; // Margin bottom cho tagline
     display: inline-block; // Cho phép padding và border
     border-radius: $border-radius-pill; // Bo rounded pill
-    border: 2px solid $primary-light; // Viền hình chữ nhật màu primary-light
+    border: 2px solid $primary-light; // Viền primary-light (giữ nguyên vì gradient border phức tạp)
     background-color: transparent; // Nền trong suốt
 
     @media (max-width: 768px) {
@@ -83,7 +83,7 @@
     background-color: rgba($white, 0.4); // Glassmorphic opacity
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    color: $primary;
+    @include gradient-text;
     font-size: 1.2rem;
     cursor: pointer;
     z-index: 10;
@@ -305,7 +305,7 @@
 
     i {
       font-size: 1.5rem;
-      color: $primary;
+      @include gradient-text;
       transition: transform 0.3s ease;
     }
 
@@ -330,12 +330,12 @@
   &__card-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: $primary-dark;
+    @include gradient-text;
     margin: 0;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 
     .services__card:hover & {
-      color: $primary-light;
+      @include gradient-text; // Giữ gradient khi hover
     }
   }
 
@@ -361,7 +361,7 @@
     gap: 8px;
     padding: 12px 30px;
     background-color: $white;
-    color: $primary;
+    @include gradient-text;
     text-decoration: none;
     border-radius: $border-radius-pill;
     font-weight: 600;

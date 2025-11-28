@@ -11,9 +11,13 @@ import { Header } from './components/Header'
 // Import Services Component
 import { Services } from './components/services/Services'
 
+// Import About Us Component
+import { AboutUs } from './components/about-us/AboutUs'
+
 // Import HTML Templates
 import { headerHTML } from './components/header/headerTemplate'
 import { servicesHTML } from './components/services/servicesTemplate'
+import { aboutUsHTML } from './components/about-us/aboutUsTemplate'
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,6 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize Services Component (Carousel)
   const services = new Services();
+  
+  // Insert About Us HTML after services
+  app.insertAdjacentHTML('beforeend', aboutUsHTML);
+  
+  // Initialize About Us Component
+  const aboutUs = new AboutUs();
   
   // Smooth scroll for navigation links
   const navLinks = document.querySelectorAll('.nav-link');

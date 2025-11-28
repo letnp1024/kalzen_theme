@@ -59,6 +59,7 @@
 // Import Custom Components
 @import "components/header";
 @import "components/services";
+@import "components/about-us";
 
 // ============================================
 // Global Styles
@@ -89,11 +90,11 @@ body {
 // ============================================
 
 .text-primary {
-  color: $primary !important;
+  @include gradient-text;
 }
 
 .bg-primary {
-  background-color: $primary !important;
+  @include gradient-background;
 }
 
 .text-secondary-navy {
