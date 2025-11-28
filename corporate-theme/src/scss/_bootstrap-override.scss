@@ -1,0 +1,30 @@
+// ============================================
+// Bootstrap Variables Override
+// ============================================
+// Note: This file is imported AFTER Bootstrap's default variables
+// Variables from _variables.scss are already imported in main.scss
+
+// Override Bootstrap primary color (using values from _variables.scss)
+// These variables are already defined in _variables.scss, just ensure Bootstrap uses them
+// Remove !default to override Bootstrap's defaults
+$primary: #1A73E8;
+$secondary: #0F4C81;
+
+// Override Bootstrap theme colors using Bootstrap's merge function
+// Note: $theme-colors is defined in Bootstrap's _variables.scss
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "primary": #1A73E8,
+    "secondary": #0F4C81,
+  )
+);
+
+// Override Bootstrap border radius (if custom values are needed)
+// Use Bootstrap defaults or override as needed
+// $border-radius: 0.5rem !default;
+// $border-radius-pill: 50rem !default;
+
+// Override Bootstrap font family
+$font-family-base: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+

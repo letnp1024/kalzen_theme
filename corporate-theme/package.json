@@ -1,0 +1,33 @@
+{
+  "name": "corporate-theme",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.29",
+    "sass": "^1.94.2",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
+    "bootstrap": "^5.3.8",
+    "gsap": "^3.12.5",
+    "isotope-layout": "^3.0.6",
+    "jquery": "^3.7.1",
+    "jquery.ripples": "^0.6.3",
+    "magnific-popup": "^1.1.0",
+    "particles.js": "^2.0.0",
+    "smooth-scrollbar": "^8.8.1",
+    "swiper": "^11.1.14",
+    "waypoints": "^4.0.1",
+    "wow.js": "^1.2.2"
+  }
+}
