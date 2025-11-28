@@ -52,8 +52,13 @@
 @import "bootstrap/scss/helpers";
 @import "bootstrap/scss/utilities/api";
 
+// Import Swiper CSS
+@import "swiper/css";
+@import "swiper/css/navigation";
+
 // Import Custom Components
 @import "components/header";
+@import "components/services";
 
 // ============================================
 // Global Styles
