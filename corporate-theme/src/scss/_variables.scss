@@ -24,20 +24,6 @@ $primary-gradient-radial: radial-gradient(
   $primary-light 100%
 );
 
-// Mixin for gradient text
-@mixin gradient-text {
-  background: $primary-gradient;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-// Mixin for gradient background
-@mixin gradient-background {
-  background: $primary-gradient;
-}
-
 // Secondary Colors
 $secondary-navy: #0F4C81; // Deep navy blue
 $secondary-light-blue: #E8EEF5; // Light gray-blue
@@ -73,6 +59,11 @@ $spacers: (
   4: $spacer * 1.5,
   5: $spacer * 3,
 );
+
+// Section Spacing - Khoảng cách giữa các section
+$section-spacing: 50px;
+$section-spacing-md: 40px; // Tablet
+$section-spacing-sm: 30px; // Mobile
 
 // ============================================
 // Border Radius

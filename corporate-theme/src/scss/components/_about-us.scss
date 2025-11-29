@@ -3,7 +3,7 @@
 // ============================================
 
 .about-us {
-  padding: 100px 0;
+  @include section-spacing;
   background-color: $white;
 
   // ============================================
