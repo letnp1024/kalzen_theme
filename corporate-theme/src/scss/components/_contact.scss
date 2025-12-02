@@ -1,6 +1,8 @@
 // ============================================
 // Contact Component
 // ============================================
+@use "../variables" as *;
+@use "../mixins" as *;
 
 .contact {
   @include section-spacing;

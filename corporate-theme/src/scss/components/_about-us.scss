@@ -1,6 +1,8 @@
 // ============================================
 // About Us Component
 // ============================================
+@use "../variables" as *;
+@use "../mixins" as *;
 
 .about-us {
   @include section-spacing;

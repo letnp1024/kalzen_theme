@@ -3,6 +3,9 @@
 // ============================================
 // Note: This file is imported AFTER Bootstrap's default variables
 // Variables from _variables.scss are already imported in main.scss
+// 
+// Lưu ý: File này dùng @import context (không phải @use) vì Bootstrap
+// được thiết kế cho @import. Để override, không dùng !default
 
 // Override Bootstrap primary color (using values from _variables.scss)
 // These variables are already defined in _variables.scss, just ensure Bootstrap uses them

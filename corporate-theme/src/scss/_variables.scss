@@ -2,10 +2,13 @@
 // Corporate Theme Color Palette
 // ============================================
 
+// Import sass:color module để sử dụng các hàm color mới
+@use "sass:color";
+
 // Primary Colors
 $primary: #1A73E8; // Modern blue
-$primary-dark: darken($primary, 10%);
-$primary-light: lighten($primary, 10%);
+$primary-dark: color.adjust($primary, $lightness: -10%);
+$primary-light: color.adjust($primary, $lightness: 10%);
 
 
 // Primary Gradient (center gradient with primary and primary lighten 50%)

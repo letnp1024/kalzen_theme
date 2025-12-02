@@ -1,6 +1,8 @@
 // ============================================
 // Footer Component
 // ============================================
+@use "../variables" as *;
+@use "../mixins" as *;
 
 .footer {
   @include gradient-background;

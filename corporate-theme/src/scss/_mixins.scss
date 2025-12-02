@@ -3,6 +3,9 @@
 // ============================================
 // Note: This file requires variables from _variables.scss to be imported first
 
+// Import variables để sử dụng trong mixins
+@use "variables" as *;
+
 // ============================================
 // Gradient Mixins
 // ============================================

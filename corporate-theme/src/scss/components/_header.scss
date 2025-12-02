@@ -1,7 +1,9 @@
 // ============================================
 // Header Component
 // ============================================
-// Variables are already imported in main.scss
+// Variables and mixins are already used in main.scss
+@use "../variables" as *;
+@use "../mixins" as *;
 
 .header {
   position: relative;

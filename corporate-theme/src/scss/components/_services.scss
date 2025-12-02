@@ -1,6 +1,8 @@
 // ============================================
 // Services Component
 // ============================================
+@use "../variables" as *;
+@use "../mixins" as *;
 
 .services {
   @include section-spacing;

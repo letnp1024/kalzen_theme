@@ -1,6 +1,8 @@
 // ============================================
 // Testimonial Component
 // ============================================
+@use "../variables" as *;
+@use "../mixins" as *;
 
 .testimonial {
   @include section-spacing;
