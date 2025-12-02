@@ -5,7 +5,7 @@
 @use "../mixins" as *;
 
 .contact {
-  @include section-spacing;
+  @include section-margin-bottom;
   background-color: $white;
 
   // ============================================

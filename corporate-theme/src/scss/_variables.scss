@@ -63,10 +63,15 @@ $spacers: (
   5: $spacer * 3,
 );
 
-// Section Spacing - Khoảng cách giữa các section
-$section-spacing: 50px;
-$section-spacing-md: 40px; // Tablet
-$section-spacing-sm: 30px; // Mobile
+// Section Spacing - Khoảng cách giữa các section (dùng cho padding-top)
+$section-spacing: 100px;
+$section-spacing-md: 80px; // Tablet
+$section-spacing-sm: 60px; // Mobile
+
+// Section Padding - Padding bên trong section (thường nhỏ hơn spacing)
+$section-padding: 80px; // Desktop: ~80% của section-spacing (100px)
+$section-padding-md: 60px; // Tablet: ~75% của section-spacing-md (80px)
+$section-padding-sm: 40px; // Mobile: ~67% của section-spacing-sm (60px)
 
 // ============================================
 // Border Radius

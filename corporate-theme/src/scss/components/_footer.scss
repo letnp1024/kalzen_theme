@@ -5,11 +5,13 @@
 @use "../mixins" as *;
 
 .footer {
+  @include section-padding;
   @include gradient-background;
+  @include section-margin-top;
   color: $white;
   position: relative;
   overflow: hidden;
-  padding: 3rem 0 1.5rem;
+  padding-bottom: 1.5rem; // Footer có padding bottom nhỏ hơn
 
   // Overlay để tăng độ tương phản
   &::before {

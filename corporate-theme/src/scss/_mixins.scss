@@ -50,16 +50,40 @@
 // Spacing Mixins
 // ============================================
 
-// Mixin for section spacing
-@mixin section-spacing {
-  padding: $section-spacing;
+// Mixin for section padding - Chỉ dùng padding-bottom với section-spacing
+@mixin section-margin-bottom {
+  margin-bottom: $section-spacing !important;
 
   @media (max-width: 991px) {
-    padding: $section-spacing-md;
+    margin-bottom: $section-spacing-md !important;
   }
 
   @media (max-width: 576px) {
-    padding: $section-spacing-sm;
+    margin-bottom: $section-spacing-sm !important;
   }
 }
 
+@mixin section-margin-top {
+  margin-top: $section-spacing !important;
+
+  @media (max-width: 991px) {
+    margin-top: $section-spacing-md !important;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: $section-spacing-sm !important;
+  }
+}
+
+@mixin section-padding {
+  padding-top: $section-padding !important;
+  padding-bottom: $section-padding !important;
+  @media (max-width: 991px) {
+    padding-top: $section-padding-md !important;
+    padding-bottom: $section-padding-md !important;
+  }
+  @media (max-width: 576px) {
+    padding-top: $section-padding-sm !important;
+    padding-bottom: $section-padding-sm !important;
+  }
+}

@@ -5,7 +5,7 @@
 @use "../mixins" as *;
 
 .services {
-  @include section-spacing;
+  @include section-margin-bottom;
   background-color: $white;
 
   // ============================================
@@ -31,13 +31,15 @@
 
   &__carousel {
     overflow: hidden; // Allow cards to extend slightly
-    padding: 20px 0;
+    padding: 0px;
 
     .swiper-wrapper {
       align-items: stretch; // Make all slides same height
     }
 
     .swiper-slide {
+      padding-top: 10px;
+      padding-bottom: 10px;
       height: auto;
       display: flex;
     }

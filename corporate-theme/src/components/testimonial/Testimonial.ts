@@ -16,6 +16,7 @@ export class Testimonial {
    * Initialize the testimonial carousel
    */
   private init(): void {
+    // Initialize carousel
     const carouselElement = document.querySelector<HTMLElement>('.testimonial__carousel');
     if (!carouselElement) return;
 

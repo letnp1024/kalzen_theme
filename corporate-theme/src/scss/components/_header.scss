@@ -6,12 +6,12 @@
 @use "../mixins" as *;
 
 .header {
+  @include section-margin-bottom;
   position: relative;
   width: 100%;
   min-height: 100vh; // Thay đổi từ height sang min-height để có thể có padding
   overflow: hidden;
-  padding-top: 0; // Không có padding-top
-  padding-bottom: $section-spacing;
+  padding-top: 0; // Không có padding-top (header là full screen)
   // ============================================
   // Hero Slideshow Container
   // ============================================
