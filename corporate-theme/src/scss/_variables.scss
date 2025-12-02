@@ -15,9 +15,9 @@ $primary-light: color.adjust($primary, $lightness: 10%);
 // Linear gradient: primary at center, primary-light-50 at edges
 $primary-gradient: linear-gradient(
   to right,
-  $primary-dark 0%,
+  $primary 0%,
   $primary-light 50%,
-  $primary-dark 100%
+  $primary 100%
 );
 
 // Primary Radial Gradient (from center)
