@@ -125,9 +125,6 @@ export class Header {
       newSlideElement.classList.add('breath-out');
     }
     
-    // Update ripple layer background to match new slide
-    this.updateRippleBackground(newSlideElement);
-    
     // Remove 'fading-out' class after transition completes
     setTimeout(() => {
       currentSlideElement.classList.remove('fading-out');
@@ -144,92 +141,110 @@ export class Header {
   }
 
   /**
-   * Update ripple layer background when slide changes
-   */
-  private updateRippleBackground(slideElement: HTMLElement): void {
-    const rippleLayer = document.querySelector<HTMLElement>('.header__slideshow-ripple');
-    if (!rippleLayer) return;
-
-    const bgImage = window.getComputedStyle(slideElement).backgroundImage;
-    if (bgImage && bgImage !== 'none') {
-      rippleLayer.style.backgroundImage = bgImage;
-      
-      // Update ripple texture if ripple is initialized
-      const $ = (window as any).$ || (window as any).jQuery;
-      if ($ && typeof ($.fn as any).ripples !== 'undefined') {
-        try {
-          const $ripple = $(rippleLayer);
-          if ($ripple.data('ripples')) {
-            // Ripple is initialized, update its texture
-            $ripple.ripples('updateSize');
-          }
-        } catch (e) {
-          // Ignore errors
-        }
-      }
-    }
-  }
-
-  /**
-   * Initialize mobile menu functionality
-   * Bootstrap handles the collapse functionality automatically
+   * Initialize mobile menu functionality with jQuery overlay
+   * Mobile menu slides in from left with backdrop
    */
   private initMobileMenu(): void {
-    // Close menu when clicking on nav links (mobile only)
-    // Also sync active state between main nav and top-nav
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        // Sync active state
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        
-        // Sync with top-nav links
-        const href = link.getAttribute('href');
-        if (href) {
-          const topNavLinks = document.querySelectorAll('.top-nav .nav-link');
-          topNavLinks.forEach(topLink => {
-            topLink.classList.remove('active');
-            if (topLink.getAttribute('href') === href) {
-              topLink.classList.add('active');
-            }
-          });
+    // Ensure jQuery is available
+    const $ = (window as any).$ || (window as any).jQuery;
+    if (!$) {
+      console.warn('jQuery is not loaded. Mobile menu overlay requires jQuery.');
+      return;
+    }
+
+    // Create backdrop element if it doesn't exist
+    let $backdrop = $('.header__navigation-backdrop');
+    if ($backdrop.length === 0) {
+      $backdrop = $('<div class="header__navigation-backdrop"></div>');
+      $('body').append($backdrop);
+    }
+
+    const $navCollapse = $('.navbar-collapse');
+    const $toggler = $('.navbar-toggler');
+
+    // Function to open mobile menu
+    const openMenu = (): void => {
+      if (window.innerWidth < 992) {
+        $navCollapse.addClass('show');
+        $backdrop.addClass('show');
+        $('body').css('overflow', 'hidden'); // Prevent body scroll
+      }
+    };
+
+    // Function to close mobile menu
+    const closeMenu = (): void => {
+      $navCollapse.removeClass('show');
+      $backdrop.removeClass('show');
+      $('body').css('overflow', ''); // Restore body scroll
+    };
+
+    // Toggle menu on navbar-toggler click
+    $toggler.on('click', function(e: JQuery.Event) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (window.innerWidth < 992) {
+        if ($navCollapse.hasClass('show')) {
+          closeMenu();
+        } else {
+          openMenu();
         }
-        
-        // Close mobile menu
-        if (window.innerWidth < 992) {
-          const navCollapse = document.querySelector('.navbar-collapse');
-          if (navCollapse && navCollapse.classList.contains('show')) {
-            // Bootstrap will handle the collapse
-            const toggler = document.querySelector('.navbar-toggler') as HTMLElement;
-            if (toggler) {
-              toggler.click();
-            }
-          }
-        }
-      });
+      }
     });
-    
+
+    // Close menu when clicking backdrop
+    $backdrop.on('click', closeMenu);
+
+    // Close menu when clicking nav links (mobile only)
+    // Also sync active state between main nav and top-nav
+    $('.nav-link').on('click', function(this: HTMLElement) {
+      const $link = $(this);
+      const href = $link.attr('href');
+
+      // Sync active state
+      $('.nav-link').removeClass('active');
+      $link.addClass('active');
+
+      // Sync with top-nav links
+      if (href) {
+        $('.top-nav .nav-link').removeClass('active');
+        $(`.top-nav .nav-link[href="${href}"]`).addClass('active');
+      }
+
+      // Close mobile menu
+      if (window.innerWidth < 992) {
+        closeMenu();
+      }
+    });
+
     // Also handle clicks on top-nav links
-    const topNavLinks = document.querySelectorAll('.top-nav .nav-link');
-    topNavLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        // Sync active state
-        topNavLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        
-        // Sync with main nav links
-        const href = link.getAttribute('href');
-        if (href) {
-          const mainNavLinks = document.querySelectorAll('.header__navigation .nav-link');
-          mainNavLinks.forEach(mainLink => {
-            mainLink.classList.remove('active');
-            if (mainLink.getAttribute('href') === href) {
-              mainLink.classList.add('active');
-            }
-          });
-        }
-      });
+    $('.top-nav .nav-link').on('click', function(this: HTMLElement) {
+      const $link = $(this);
+      const href = $link.attr('href');
+
+      // Sync active state
+      $('.top-nav .nav-link').removeClass('active');
+      $link.addClass('active');
+
+      // Sync with main nav links
+      if (href) {
+        $('.header__navigation .nav-link').removeClass('active');
+        $(`.header__navigation .nav-link[href="${href}"]`).addClass('active');
+      }
+    });
+
+    // Close menu on window resize if switching to desktop
+    $(window).on('resize', function() {
+      if (window.innerWidth >= 992) {
+        closeMenu();
+      }
+    });
+
+    // Close menu on ESC key
+    $(document).on('keydown', function(e: JQuery.Event) {
+      if (e.key === 'Escape' && $navCollapse.hasClass('show')) {
+        closeMenu();
+      }
     });
   }
 
