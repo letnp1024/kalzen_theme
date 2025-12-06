@@ -1,0 +1,110 @@
+// ============================================
+// Animations
+// ============================================
+// Centralized animation keyframes and utility classes
+// Used across multiple components (Header, Hero, etc.)
+
+// ============================================
+// Keyframes
+// ============================================
+
+// Slide In Up - Element slides up from below and fades in
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Slide Out Down - Element slides down and fades out
+@keyframes slideOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+
+// Fade In - Simple fade in animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Fade Out - Simple fade out animation
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+// Breath In - Scale animation for slideshow (expands)
+// Starts at baseline 1.05, expands to 1.1, then back
+@keyframes breathIn {
+  0%, 100% {
+    transform: scale(1.05); // Baseline - larger size to prevent shrinking
+  }
+  50% {
+    transform: scale(1.1); // Zoom in further (breath in)
+  }
+}
+
+// Breath Out - Scale animation for slideshow (contracts)
+// Starts at baseline 1.05, contracts to 1.0, then back
+@keyframes breathOut {
+  0%, 100% {
+    transform: scale(1.05); // Baseline - same as breath in for consistency
+  }
+  50% {
+    transform: scale(1.0); // Zoom out (breath out) but never smaller than container
+  }
+}
+
+// Gradient Slide Right - Gradient overlay slides from left to right
+@keyframes gradientSlideRight {
+  0% {
+    left: -60%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+// ============================================
+// Animation Utility Classes
+// ============================================
+
+// Slide Fade Enter - For slide transitions
+.slide-fade-enter {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+// Slide Fade Exit - For slide transitions
+.slide-fade-exit {
+  animation: fadeOut 1.5s ease-in-out;
+}
+
+// Content Slide In - Hero content slides in from below
+.content-slide-in {
+  animation: slideInUp 1s ease-out forwards;
+}
+
+// Content Slide Out - Hero content slides out downward
+.content-slide-out {
+  animation: slideOutDown 0.5s ease-in forwards;
+}
+

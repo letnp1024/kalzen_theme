@@ -4,6 +4,7 @@
 // Variables and mixins are already used in main.scss
 @use "../variables" as *;
 @use "../mixins" as *;
+@use "animations" as *;
 
 .header {
   @include section-margin-bottom;
@@ -84,15 +85,6 @@
       z-index: calc($z-index-hero-overlay + 1); // Above overlay, below content
       pointer-events: none; // Allow interaction with elements below
       animation: gradientSlideRight 8s ease-in-out infinite;
-
-      @keyframes gradientSlideRight {
-        0% {
-          left: -60%;
-        }
-        100% {
-          left: 100%;
-        }
-      }
     }
   }
 
@@ -432,7 +424,8 @@
     }
 
     &-button {
-      padding: 1rem 2.5rem;
+      padding: 
+      1rem 2.5rem;
       font-size: 1.125rem;
       font-weight: 600;
       border-radius: $border-radius-pill;
@@ -485,88 +478,6 @@
     }
   }
 
-  // ============================================
-  // Animations
-  // ============================================
-  @keyframes slideInUp {
-    from {
-      opacity: 0;
-      transform: translateY(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideOutDown {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(50px);
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-
-  // Breath animations for slideshow images
-  // Breath In: Starts at baseline 1.05, expands to 1.1, then back
-  @keyframes breathIn {
-    0%, 100% {
-      transform: scale(1.05); // Baseline - larger size to prevent shrinking
-    }
-    50% {
-      transform: scale(1.1); // Zoom in further (breath in)
-    }
-  }
-
-  // Breath Out: Starts at baseline 1.05, contracts to 1.0, then back
-  @keyframes breathOut {
-    0%, 100% {
-      transform: scale(1.05); // Baseline - same as breath in for consistency
-    }
-    50% {
-      transform: scale(1.0); // Zoom out (breath out) but never smaller than container
-    }
-  }
-}
-
-// ============================================
-// Slide Transition Classes
-// ============================================
-.slide-fade-enter {
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-.slide-fade-exit {
-  animation: fadeOut 1.5s ease-in-out;
-}
-
-.content-slide-in {
-  animation: slideInUp 1s ease-out forwards;
-}
-
-.content-slide-out {
-  animation: slideOutDown 0.5s ease-in forwards;
 }
 
 // ============================================

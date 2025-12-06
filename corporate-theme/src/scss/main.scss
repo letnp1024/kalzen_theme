@@ -12,6 +12,7 @@
 @use "mixins" as *;
 
 // Use Custom Components
+@use "components/animations";
 @use "components/header";
 @use "components/services";
 @use "components/about-us";
