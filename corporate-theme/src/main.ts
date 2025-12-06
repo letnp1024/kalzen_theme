@@ -5,6 +5,12 @@
 // Import Main Styles (SCSS)
 import './scss/main.scss'
 
+// Import and initialize libraries
+import { initializeLibraries } from './libraries-setup'
+
+// Import Animation Manager
+import { AnimationManager } from './components/AnimationManager'
+
 // Import Header Component
 import { Header } from './components/Header'
 
@@ -31,6 +37,12 @@ import { footerHTML } from './components/footer/footerTemplate'
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.querySelector<HTMLDivElement>('#app')!;
+  
+  // Initialize libraries (AOS, GSAP, etc.)
+  initializeLibraries();
+  
+  // Initialize Animation Manager
+  const animationManager = AnimationManager.getInstance();
   
   // Insert header HTML
   app.innerHTML = headerHTML;
@@ -70,6 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Insert Footer HTML at the end
   app.insertAdjacentHTML('beforeend', footerHTML);
+  
+  // Initialize all animations after all components are loaded
+  animationManager.initAllAnimations();
   
   // Smooth scroll for navigation links
   const navLinks = document.querySelectorAll('.nav-link');

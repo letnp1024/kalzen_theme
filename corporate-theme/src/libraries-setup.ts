@@ -80,16 +80,29 @@ import 'animate.css';
 // ============================================
 // 6. WOW.JS - Scroll Reveal Animations
 // ============================================
-import { WOW } from 'wow.js';
+// Note: WOW.js có thể có vấn đề với import, comment out vì đã có AOS
+// Nếu cần sử dụng WOW.js, thử các cách sau:
+
+// Cách 1: Import default
+// import WOW from 'wow.js';
+
+// Cách 2: Import named export
+// import { WOW } from 'wow.js';
+
+// Cách 3: Dynamic import
+// const loadWOW = async () => {
+//   const module = await import('wow.js');
+//   return module.default || module.WOW || module;
+// };
 
 // Khởi tạo WOW.js (nếu muốn dùng thay vì AOS)
-const wow = new WOW({
-  boxClass: 'wow',        // class để trigger animation
-  animateClass: 'animated', // class animation
-  offset: 0,              // distance to trigger
-  mobile: true,           // enable on mobile
-  live: true,             // reload trên dynamic content
-});
+// const wow = new WOW({
+//   boxClass: 'wow',        // class để trigger animation
+//   animateClass: 'animated', // class animation
+//   offset: 0,              // distance to trigger
+//   mobile: true,           // enable on mobile
+//   live: true,             // reload trên dynamic content
+// });
 
 // wow.init(); // Uncomment để sử dụng
 
@@ -126,9 +139,20 @@ import 'magnific-popup/dist/magnific-popup.css';
 // ============================================
 // 9. WAYPOINTS - Scroll Triggers
 // ============================================
-import Waypoint from 'waypoints/lib/noframework.waypoints.js';
+// Note: Waypoints v4 không có default export, sử dụng dynamic import hoặc comment out nếu không dùng
+// Vì đã có GSAP ScrollTrigger và AOS, Waypoints có thể không cần thiết
+// Nếu cần sử dụng, uncomment và sử dụng dynamic import:
 
-// Ví dụ sử dụng:
+// import * as WaypointModule from 'waypoints/lib/noframework.waypoints.js';
+// const Waypoint = (WaypointModule as any).default || WaypointModule;
+
+// Hoặc sử dụng dynamic import khi cần:
+// const loadWaypoint = async () => {
+//   const module = await import('waypoints/lib/noframework.waypoints.js');
+//   return module.default || module;
+// };
+
+// Ví dụ sử dụng (nếu đã load):
 // const waypoint = new Waypoint({
 //   element: document.querySelector('.element'),
 //   handler: function(direction) {
@@ -141,9 +165,19 @@ import Waypoint from 'waypoints/lib/noframework.waypoints.js';
 // ============================================
 // 10. PARTICLES.JS - Particle Background
 // ============================================
-import Particles from 'particles.js';
+// Note: particles.js không có default export, sử dụng dynamic import hoặc comment out nếu không dùng
+// Nếu cần sử dụng, uncomment và sử dụng dynamic import:
 
-// Ví dụ sử dụng:
+// import * as ParticlesModule from 'particles.js';
+// const Particles = (ParticlesModule as any).default || ParticlesModule;
+
+// Hoặc sử dụng dynamic import khi cần:
+// const loadParticles = async () => {
+//   const module = await import('particles.js');
+//   return module.default || module;
+// };
+
+// Ví dụ sử dụng (nếu đã load):
 // Particles('particles-js', {
 //   particles: { /* config */ },
 //   interactivity: { /* config */ }
@@ -168,9 +202,9 @@ export {
   AOS,
   Swiper,
   Isotope,
-  Particles,
+  // Particles, // Commented out - use dynamic import if needed
   SmoothScrollbar,
-  Waypoint,
+  // Waypoint, // Commented out - use GSAP ScrollTrigger or AOS instead
 };
 
 // ============================================

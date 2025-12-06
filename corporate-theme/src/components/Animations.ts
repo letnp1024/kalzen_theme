@@ -138,5 +138,180 @@ export class Animations {
       element.classList.add('content-slide-out');
     }
   }
+
+  /**
+   * Slide in from left
+   * @param element - Element to animate
+   * @param delay - Optional delay in milliseconds
+   */
+  static slideInLeft(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('slide-in-left');
+      }, delay);
+    } else {
+      element.classList.add('slide-in-left');
+    }
+  }
+
+  /**
+   * Slide in from right
+   * @param element - Element to animate
+   * @param delay - Optional delay in milliseconds
+   */
+  static slideInRight(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('slide-in-right');
+      }, delay);
+    } else {
+      element.classList.add('slide-in-right');
+    }
+  }
+
+  /**
+   * Zoom in animation
+   * @param element - Element to animate
+   * @param delay - Optional delay in milliseconds
+   */
+  static zoomIn(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('zoom-in');
+      }, delay);
+    } else {
+      element.classList.add('zoom-in');
+    }
+  }
+
+  /**
+   * Bounce in animation
+   * @param element - Element to animate
+   * @param delay - Optional delay in milliseconds
+   */
+  static bounceIn(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('bounce-in');
+      }, delay);
+    } else {
+      element.classList.add('bounce-in');
+    }
+  }
+
+  /**
+   * Rotate in animation
+   * @param element - Element to animate
+   * @param delay - Optional delay in milliseconds
+   */
+  static rotateIn(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('rotate-in');
+      }, delay);
+    } else {
+      element.classList.add('rotate-in');
+    }
+  }
+
+  /**
+   * Flip in animation
+   * @param element - Element to animate
+   * @param delay - Optional delay in milliseconds
+   */
+  static flipIn(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('flip-in');
+      }, delay);
+    } else {
+      element.classList.add('flip-in');
+    }
+  }
+
+  /**
+   * Text reveal animation
+   * @param element - Element to animate
+   * @param delay - Optional delay in milliseconds
+   */
+  static textReveal(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('text-reveal');
+      }, delay);
+    } else {
+      element.classList.add('text-reveal');
+    }
+  }
+
+  /**
+   * Stagger animation for multiple elements
+   * @param elements - NodeList or array of elements
+   * @param baseDelay - Base delay between each element (ms)
+   * @param startDelay - Initial delay before first element (ms)
+   */
+  static stagger(
+    elements: NodeListOf<HTMLElement> | HTMLElement[],
+    baseDelay: number = 100,
+    startDelay: number = 0
+  ): void {
+    const elementArray = Array.from(elements);
+    
+    elementArray.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add('stagger-item', 'active');
+      }, startDelay + (index * baseDelay));
+    });
+  }
+
+  /**
+   * Add hover lift effect
+   * @param element - Element to add effect to
+   */
+  static addHoverLift(element: HTMLElement | null): void {
+    if (!element) return;
+    element.classList.add('hover-lift');
+  }
+
+  /**
+   * Add hover scale effect
+   * @param element - Element to add effect to
+   */
+  static addHoverScale(element: HTMLElement | null): void {
+    if (!element) return;
+    element.classList.add('hover-scale');
+  }
+
+  /**
+   * Add hover glow effect
+   * @param element - Element to add effect to
+   */
+  static addHoverGlow(element: HTMLElement | null): void {
+    if (!element) return;
+    element.classList.add('hover-glow');
+  }
+
+  /**
+   * Add pulse animation
+   * @param element - Element to animate
+   */
+  static addPulse(element: HTMLElement | null): void {
+    if (!element) return;
+    element.classList.add('pulse');
+  }
 }
 

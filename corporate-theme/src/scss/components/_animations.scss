@@ -84,6 +84,188 @@
   }
 }
 
+// Slide In Left - Element slides in from left
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Slide In Right - Element slides in from right
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Zoom In - Element zooms in and fades
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Zoom Out - Element zooms out and fades
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+// Scale Up - Element scales up on hover
+@keyframes scaleUp {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+// Scale Down - Element scales down
+@keyframes scaleDown {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.95);
+  }
+}
+
+// Bounce - Bouncing animation
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+// Bounce In - Bounce with fade in
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-50px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Pulse - Pulsing animation
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+// Shake - Shaking animation
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+// Rotate In - Rotate while fading in
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-200deg) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+// Flip In - Flip animation
+@keyframes flipIn {
+  from {
+    opacity: 0;
+    transform: perspective(400px) rotateY(90deg);
+  }
+  40% {
+    transform: perspective(400px) rotateY(-20deg);
+  }
+  60% {
+    transform: perspective(400px) rotateY(10deg);
+  }
+  80% {
+    transform: perspective(400px) rotateY(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(400px) rotateY(0deg);
+  }
+}
+
+// Text Reveal - Text reveals from left
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Counter Animation - For number counting
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 // ============================================
 // Animation Utility Classes
 // ============================================
@@ -106,5 +288,99 @@
 // Content Slide Out - Hero content slides out downward
 .content-slide-out {
   animation: slideOutDown 0.5s ease-in forwards;
+}
+
+// Slide In Left - For elements entering from left
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+// Slide In Right - For elements entering from right
+.slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+// Zoom In - For images and cards
+.zoom-in {
+  animation: zoomIn 0.6s ease-out forwards;
+}
+
+// Zoom Out - For exit animations
+.zoom-out {
+  animation: zoomOut 0.6s ease-in forwards;
+}
+
+// Bounce In - For attention-grabbing elements
+.bounce-in {
+  animation: bounceIn 0.8s ease-out forwards;
+}
+
+// Pulse - For continuous pulsing
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+// Rotate In - For creative entrances
+.rotate-in {
+  animation: rotateIn 0.8s ease-out forwards;
+}
+
+// Flip In - For card flips
+.flip-in {
+  animation: flipIn 0.8s ease-out forwards;
+}
+
+// Text Reveal - For text animations
+.text-reveal {
+  animation: textReveal 0.6s ease-out forwards;
+}
+
+// Stagger Animation - Applied via JavaScript
+.stagger-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Hover Effects
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 0 20px rgba(26, 115, 232, 0.4);
+  }
+}
+
+// Reduced Motion Support
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
