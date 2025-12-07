@@ -23,10 +23,7 @@ export class Contact {
    * Initialize the component
    */
   private init(): void {
-    // Initialize parallax scroll effect
-    this.initParallax();
-
-    // Initialize pan animations
+    // Initialize pan animations (parallax will be enabled after card animation)
     this.initPanAnimations();
   }
 
@@ -34,6 +31,7 @@ export class Contact {
    * Initialize pan animations for entire card
    * Card and image slide from right to left
    * Triggers once when section enters viewport
+   * Parallax will be enabled after card animation completes
    */
   private initPanAnimations(): void {
     const contactSection = document.querySelector('.contact');
@@ -59,7 +57,16 @@ export class Contact {
             x: 0,
             opacity: 1,
             duration: 1,
-            ease: "power2.out"
+            ease: "power2.out",
+            onComplete: () => {
+              // Enable parallax after card animation completes
+              // Delay a bit to ensure card is fully in position
+              setTimeout(() => {
+                if (!this.parallaxInstance && this.imageElement && this.imageWrapper) {
+                  this.initParallax();
+                }
+              }, 100);
+            }
           });
         }
       }

@@ -37,10 +37,7 @@ export class AboutUs {
     // Initialize FAQ accordion
     this.initFAQ();
 
-    // Initialize parallax scroll effect
-    this.initParallax();
-
-    // Initialize pan animations
+    // Initialize pan animations (parallax will be enabled after card animation)
     this.initPanAnimations();
   }
 
@@ -48,6 +45,7 @@ export class AboutUs {
    * Initialize pan animations for entire card
    * Card and image slide from left to right
    * Triggers once when section enters viewport
+   * Parallax will be enabled after card animation completes
    */
   private initPanAnimations(): void {
     const aboutSection = document.querySelector('.about-us');
@@ -73,7 +71,16 @@ export class AboutUs {
             x: 0,
             opacity: 1,
             duration: 1,
-            ease: "power2.out"
+            ease: "power2.out",
+            onComplete: () => {
+              // Enable parallax after card animation completes
+              // Delay a bit to ensure card is fully in position
+              setTimeout(() => {
+                if (!this.parallaxInstance && this.imageElement && this.imageWrapper) {
+                  this.initParallax();
+                }
+              }, 100);
+            }
           });
         }
       }
