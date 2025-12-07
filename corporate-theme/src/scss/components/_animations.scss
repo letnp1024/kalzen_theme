@@ -378,6 +378,42 @@
   }
 }
 
+// Hero Slogan Slide Left to Right - Slogan slides from left to right
+@keyframes heroSloganSlideLeftToRight {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Hero Subtitle Slide Right to Left - Subtitle slides from right to left
+@keyframes heroSubtitleSlideRightToLeft {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Hero Button Pan Down - Button pans from top to bottom
+@keyframes heroButtonPanDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 // ============================================
 // Animation Utility Classes
 // ============================================
@@ -536,21 +572,21 @@
   animation: heroStagger 0.8s ease-out forwards;
 }
 
-// Hero Slogan Animation
+// Hero Slogan Animation - Slide from left to right
 .hero-slogan-enter {
-  animation: heroStagger 1s ease-out 0.2s forwards;
+  animation: heroSloganSlideLeftToRight 1s ease-out 0.2s forwards;
   opacity: 0;
 }
 
-// Hero Subtitle Animation
+// Hero Subtitle Animation - Slide from right to left
 .hero-subtitle-enter {
-  animation: heroStagger 1s ease-out 0.4s forwards;
+  animation: heroSubtitleSlideRightToLeft 1s ease-out 0.4s forwards;
   opacity: 0;
 }
 
-// Hero CTA Animation
+// Hero CTA Animation - Pan from top to bottom
 .hero-cta-enter {
-  animation: heroStagger 1s ease-out 0.6s forwards;
+  animation: heroButtonPanDown 1s ease-out 0.6s forwards;
   opacity: 0;
 }
 

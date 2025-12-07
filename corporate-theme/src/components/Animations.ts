@@ -436,7 +436,10 @@ export class Animations {
   }
 
   /**
-   * Animate hero content with stagger
+   * Animate hero content with specific directions:
+   * - Slogan: slide from left to right
+   * - Subtitle: slide from right to left
+   * - CTA: pan from top to bottom
    * @param slogan - Hero slogan element
    * @param subtitle - Hero subtitle element
    * @param cta - Hero CTA element
@@ -454,6 +457,57 @@ export class Animations {
     }
     if (cta) {
       cta.classList.add('hero-cta-enter');
+    }
+  }
+
+  /**
+   * Animate hero slogan sliding from left to right
+   * @param element - Hero slogan element
+   * @param delay - Optional delay in milliseconds
+   */
+  static heroSloganSlideLeftToRight(element: HTMLElement | null, delay: number = 200): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('hero-slogan-enter');
+      }, delay);
+    } else {
+      element.classList.add('hero-slogan-enter');
+    }
+  }
+
+  /**
+   * Animate hero subtitle sliding from right to left
+   * @param element - Hero subtitle element
+   * @param delay - Optional delay in milliseconds
+   */
+  static heroSubtitleSlideRightToLeft(element: HTMLElement | null, delay: number = 400): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('hero-subtitle-enter');
+      }, delay);
+    } else {
+      element.classList.add('hero-subtitle-enter');
+    }
+  }
+
+  /**
+   * Animate hero button panning from top to bottom
+   * @param element - Hero CTA button element
+   * @param delay - Optional delay in milliseconds
+   */
+  static heroButtonPanDown(element: HTMLElement | null, delay: number = 600): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('hero-cta-enter');
+      }, delay);
+    } else {
+      element.classList.add('hero-cta-enter');
     }
   }
 
