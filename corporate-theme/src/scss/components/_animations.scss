@@ -267,6 +267,118 @@
 }
 
 // ============================================
+// Header Specific Animations
+// ============================================
+
+// Top Bar Slide Down - Top bar slides down from top
+@keyframes topBarSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Navigation Fade In - Navigation fades in smoothly
+@keyframes navFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Navigation Slide In - Navigation slides in from top with scale
+@keyframes navSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Top Nav Slide Down - Sticky top nav slides down
+@keyframes topNavSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Logo Scale In - Logo scales in with fade
+@keyframes logoScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Nav Link Slide In - Individual nav links slide in with stagger
+@keyframes navLinkSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Mobile Menu Slide In - Mobile menu slides in from left
+@keyframes mobileMenuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Mobile Menu Slide Out - Mobile menu slides out to left
+@keyframes mobileMenuSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+// Hero Content Stagger - Hero elements appear with stagger
+@keyframes heroStagger {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================
 // Animation Utility Classes
 // ============================================
 
@@ -371,6 +483,75 @@
   &:hover {
     box-shadow: 0 0 20px rgba(26, 115, 232, 0.4);
   }
+}
+
+// ============================================
+// Header Animation Utility Classes
+// ============================================
+
+// Top Bar Animation
+.top-bar-enter {
+  animation: topBarSlideDown 0.6s ease-out forwards;
+}
+
+// Navigation Animation
+.nav-enter {
+  animation: navSlideIn 0.8s ease-out forwards;
+}
+
+.nav-fade-in {
+  animation: navFadeIn 0.6s ease-out forwards;
+}
+
+// Top Nav Sticky Animation
+.top-nav-enter {
+  animation: topNavSlideDown 0.4s ease-out forwards;
+}
+
+// Logo Animation
+.logo-enter {
+  animation: logoScaleIn 0.6s ease-out forwards;
+}
+
+// Nav Link Animation (for stagger effect)
+.nav-link-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: navLinkSlideIn 0.5s ease-out forwards;
+}
+
+// Mobile Menu Animations
+.mobile-menu-enter {
+  animation: mobileMenuSlideIn 0.3s ease-out forwards;
+}
+
+.mobile-menu-exit {
+  animation: mobileMenuSlideOut 0.3s ease-in forwards;
+}
+
+// Hero Content Stagger
+.hero-stagger {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroStagger 0.8s ease-out forwards;
+}
+
+// Hero Slogan Animation
+.hero-slogan-enter {
+  animation: heroStagger 1s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+// Hero Subtitle Animation
+.hero-subtitle-enter {
+  animation: heroStagger 1s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+// Hero CTA Animation
+.hero-cta-enter {
+  animation: heroStagger 1s ease-out 0.6s forwards;
+  opacity: 0;
 }
 
 // Reduced Motion Support

@@ -3,6 +3,8 @@
  * Includes: Top bar, Navigation menu, and Hero section with slogan
  */
 
+import { Animations } from './Animations';
+
 export class Header {
   private slideshowContainer: HTMLElement | null;
   private slides: NodeListOf<HTMLElement> | null;
@@ -41,6 +43,9 @@ export class Header {
       this.startSlideshow();
     }
 
+    // Initialize animations
+    this.initAnimations();
+
     // Initialize mobile menu
     this.initMobileMenu();
 
@@ -49,6 +54,37 @@ export class Header {
 
     // Ripple effect is initialized in main.ts after CDN scripts load
     // this.initRippleEffect();
+  }
+
+  /**
+   * Initialize header animations
+   */
+  private initAnimations(): void {
+    // Animate top bar
+    const topBar = document.querySelector('.header__top-bar');
+    Animations.topBarEnter(topBar as HTMLElement, 100);
+
+    // Animate logo
+    const logo = document.querySelector('.header__top-bar-logo');
+    Animations.logoEnter(logo as HTMLElement, 200);
+
+    // Animate navigation menu
+    const navigation = document.querySelector('.header__navigation-inner');
+    Animations.navEnter(navigation as HTMLElement, 300);
+
+    // Animate nav links with stagger effect
+    const navLinks = document.querySelectorAll('.header__navigation .nav-link');
+    Animations.navLinksStagger(navLinks as NodeListOf<HTMLElement>, 80, 400);
+
+    // Animate hero content with stagger
+    const heroSlogan = document.querySelector('.header__hero-slogan');
+    const heroSubtitle = document.querySelector('.header__hero-subtitle');
+    const heroCTA = document.querySelector('.header__hero-cta');
+    Animations.heroContentStagger(
+      heroSlogan as HTMLElement,
+      heroSubtitle as HTMLElement,
+      heroCTA as HTMLElement
+    );
   }
 
   /**
@@ -168,14 +204,20 @@ export class Header {
         $navCollapse.addClass('show');
         $backdrop.addClass('show');
         $('body').css('overflow', 'hidden'); // Prevent body scroll
+        // Animate mobile menu entrance
+        Animations.mobileMenuEnter($navCollapse[0] as HTMLElement);
       }
     };
 
     // Function to close mobile menu
     const closeMenu = (): void => {
-      $navCollapse.removeClass('show');
-      $backdrop.removeClass('show');
-      $('body').css('overflow', ''); // Restore body scroll
+      // Animate mobile menu exit
+      Animations.mobileMenuExit($navCollapse[0] as HTMLElement);
+      setTimeout(() => {
+        $navCollapse.removeClass('show');
+        $backdrop.removeClass('show');
+        $('body').css('overflow', ''); // Restore body scroll
+      }, 300); // Match animation duration
     };
 
     // Toggle menu on navbar-toggler click
@@ -304,6 +346,7 @@ export class Header {
           // Scrolling down past nav bar - show top-nav
           if (!this.topNav!.classList.contains('show')) {
             this.topNav!.classList.add('show');
+            Animations.topNavEnter(this.topNav);
           }
         } else {
           // Scrolled back up to or above nav bar - hide top-nav

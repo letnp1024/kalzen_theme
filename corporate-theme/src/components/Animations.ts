@@ -313,5 +313,170 @@ export class Animations {
     if (!element) return;
     element.classList.add('pulse');
   }
+
+  // ============================================
+  // Header Specific Animations
+  // ============================================
+
+  /**
+   * Animate top bar sliding down
+   * @param element - Top bar element
+   * @param delay - Optional delay in milliseconds
+   */
+  static topBarEnter(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('top-bar-enter');
+      }, delay);
+    } else {
+      element.classList.add('top-bar-enter');
+    }
+  }
+
+  /**
+   * Animate navigation menu entering
+   * @param element - Navigation element
+   * @param delay - Optional delay in milliseconds
+   */
+  static navEnter(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('nav-enter');
+      }, delay);
+    } else {
+      element.classList.add('nav-enter');
+    }
+  }
+
+  /**
+   * Animate navigation menu with fade in
+   * @param element - Navigation element
+   * @param delay - Optional delay in milliseconds
+   */
+  static navFadeIn(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('nav-fade-in');
+      }, delay);
+    } else {
+      element.classList.add('nav-fade-in');
+    }
+  }
+
+  /**
+   * Animate top nav sticky menu
+   * @param element - Top nav element
+   */
+  static topNavEnter(element: HTMLElement | null): void {
+    if (!element) return;
+    element.classList.add('top-nav-enter');
+  }
+
+  /**
+   * Animate logo entering
+   * @param element - Logo element
+   * @param delay - Optional delay in milliseconds
+   */
+  static logoEnter(element: HTMLElement | null, delay: number = 0): void {
+    if (!element) return;
+
+    if (delay > 0) {
+      setTimeout(() => {
+        element.classList.add('logo-enter');
+      }, delay);
+    } else {
+      element.classList.add('logo-enter');
+    }
+  }
+
+  /**
+   * Animate nav links with stagger effect
+   * @param elements - NodeList or array of nav link elements
+   * @param baseDelay - Base delay between each link (ms)
+   * @param startDelay - Initial delay before first link (ms)
+   */
+  static navLinksStagger(
+    elements: NodeListOf<HTMLElement> | HTMLElement[],
+    baseDelay: number = 100,
+    startDelay: number = 0
+  ): void {
+    const elementArray = Array.from(elements);
+    
+    elementArray.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add('nav-link-enter');
+      }, startDelay + (index * baseDelay));
+    });
+  }
+
+  /**
+   * Animate mobile menu sliding in
+   * @param element - Mobile menu element
+   */
+  static mobileMenuEnter(element: HTMLElement | null): void {
+    if (!element) return;
+    element.classList.remove('mobile-menu-exit');
+    element.classList.add('mobile-menu-enter');
+  }
+
+  /**
+   * Animate mobile menu sliding out
+   * @param element - Mobile menu element
+   */
+  static mobileMenuExit(element: HTMLElement | null): void {
+    if (!element) return;
+    element.classList.remove('mobile-menu-enter');
+    element.classList.add('mobile-menu-exit');
+  }
+
+  /**
+   * Animate hero content with stagger
+   * @param slogan - Hero slogan element
+   * @param subtitle - Hero subtitle element
+   * @param cta - Hero CTA element
+   */
+  static heroContentStagger(
+    slogan: HTMLElement | null,
+    subtitle: HTMLElement | null,
+    cta: HTMLElement | null
+  ): void {
+    if (slogan) {
+      slogan.classList.add('hero-slogan-enter');
+    }
+    if (subtitle) {
+      subtitle.classList.add('hero-subtitle-enter');
+    }
+    if (cta) {
+      cta.classList.add('hero-cta-enter');
+    }
+  }
+
+  /**
+   * Reset all header animations
+   * @param element - Element to reset
+   */
+  static resetHeader(element: HTMLElement | null): void {
+    if (!element) return;
+    element.classList.remove(
+      'top-bar-enter',
+      'nav-enter',
+      'nav-fade-in',
+      'top-nav-enter',
+      'logo-enter',
+      'nav-link-enter',
+      'mobile-menu-enter',
+      'mobile-menu-exit',
+      'hero-stagger',
+      'hero-slogan-enter',
+      'hero-subtitle-enter',
+      'hero-cta-enter'
+    );
+  }
 }
 

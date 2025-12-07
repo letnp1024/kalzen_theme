@@ -106,6 +106,7 @@
     @include glassmorphic;
     padding: 0.75rem 0;
     border-bottom: 1px solid rgba($secondary-gray, 0.3);
+    opacity: 0; // Start hidden for animation
 
     &-inner {
       display: flex;
@@ -157,6 +158,7 @@
     &-logo {
       display: flex;
       align-items: center;
+      opacity: 0; // Start hidden for animation
       
       img {
         height: 40px;
@@ -200,6 +202,7 @@
       width: fit-content;
       max-width: 100%;
       height: 100%;
+      opacity: 0; // Start hidden for animation
       
       @media (max-width: 991px) {
         border-radius: $border-radius-lg;
@@ -241,7 +244,7 @@
         backdrop-filter: blur(20px);
         z-index: calc($z-index-sticky + 100) !important;
         overflow-y: auto;
-        transition: width 0.3s ease-in-out;
+        transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
         box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
         padding: 0;
         opacity: 0;
@@ -280,6 +283,7 @@
       transition: $transition-base;
       position: relative;
       font-size: 0.95rem;
+      opacity: 0; // Start hidden for stagger animation
 
       &:hover,
       &.active {
