@@ -4,6 +4,8 @@
  */
 
 import { Animations } from './Animations';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export class Header {
   private slideshowContainer: HTMLElement | null;
@@ -52,6 +54,9 @@ export class Header {
     // Initialize top-nav sticky behavior
     this.initTopNav();
 
+    // Initialize hero highlight on scroll
+    this.initHeroHighlight();
+
     // Ripple effect is initialized in main.ts after CDN scripts load
     // this.initRippleEffect();
   }
@@ -76,6 +81,10 @@ export class Header {
     const navLinks = document.querySelectorAll('.header__navigation .nav-link');
     Animations.navLinksStagger(navLinks as NodeListOf<HTMLElement>, 80, 400);
 
+    // Wrap words in slogan and subtitle for word-by-word highlight
+    this.wrapSloganWords();
+    this.wrapSubtitleWords();
+
     // Animate hero content with stagger
     const heroSlogan = document.querySelector('.header__hero-slogan');
     const heroSubtitle = document.querySelector('.header__hero-subtitle');
@@ -85,6 +94,60 @@ export class Header {
       heroSubtitle as HTMLElement,
       heroCTA as HTMLElement
     );
+  }
+
+  /**
+   * Wrap each word in slogan with span for word-by-word highlight
+   */
+  private wrapSloganWords(): void {
+    const slogan = document.querySelector('.header__hero-slogan');
+    if (!slogan) return;
+
+    const text = slogan.textContent || '';
+    const words = text.trim().split(/\s+/);
+    
+    // Clear existing content
+    slogan.innerHTML = '';
+    
+    // Wrap each word in a span (NO highlight class initially)
+    words.forEach((word, index) => {
+      const span = document.createElement('span');
+      span.className = 'word'; // Only 'word' class, NO 'highlight'
+      span.textContent = word;
+      slogan.appendChild(span);
+      
+      // Add space after word (except last)
+      if (index < words.length - 1) {
+        slogan.appendChild(document.createTextNode(' '));
+      }
+    });
+  }
+
+  /**
+   * Wrap each word in subtitle with span for word-by-word highlight
+   */
+  private wrapSubtitleWords(): void {
+    const subtitle = document.querySelector('.header__hero-subtitle');
+    if (!subtitle) return;
+
+    const text = subtitle.textContent || '';
+    const words = text.trim().split(/\s+/);
+    
+    // Clear existing content
+    subtitle.innerHTML = '';
+    
+    // Wrap each word in a span (NO highlight class initially)
+    words.forEach((word, index) => {
+      const span = document.createElement('span');
+      span.className = 'word'; // Only 'word' class, NO 'highlight'
+      span.textContent = word;
+      subtitle.appendChild(span);
+      
+      // Add space after word (except last)
+      if (index < words.length - 1) {
+        subtitle.appendChild(document.createTextNode(' '));
+      }
+    });
   }
 
   /**
@@ -377,6 +440,192 @@ export class Header {
         link.classList.add('active');
       }
     });
+  }
+
+  /**
+   * Initialize hero highlight effect on scroll using GSAP ScrollTrigger
+   * Highlights each word one by one as user scrolls down
+   * Pins hero section during highlighting process
+   */
+  private initHeroHighlight(): void {
+    if (!this.heroContent) return;
+
+    const slogan = this.heroContent.querySelector('.header__hero-slogan');
+    const subtitle = this.heroContent.querySelector('.header__hero-subtitle');
+    const button = this.heroContent.querySelector('.header__hero-button');
+    if (!slogan) return;
+
+    // Get all word elements from slogan
+    const sloganWords = slogan.querySelectorAll('.word');
+    const totalSloganWords = sloganWords.length;
+    
+    if (totalSloganWords === 0) return;
+
+    // Get all word elements from subtitle
+    const subtitleWords = subtitle ? subtitle.querySelectorAll('.word') : [];
+    const totalSubtitleWords = subtitleWords.length;
+    
+    // Total words = slogan words + subtitle words
+    const totalWords = totalSloganWords + totalSubtitleWords;
+
+    // Ensure NO words are highlighted initially
+    sloganWords.forEach(word => {
+      word.classList.remove('highlight');
+    });
+    subtitleWords.forEach(word => {
+      word.classList.remove('highlight');
+    });
+
+    // Hide button initially and prepare for pop animation
+    let buttonPopped = false;
+    if (button) {
+      gsap.set(button, {
+        opacity: 0,
+        scale: 0.5,
+        y: 20
+      });
+    }
+
+    // Get hero element
+    const heroElement = document.querySelector('.header');
+    const heroSection = document.querySelector('.header__hero');
+    if (!heroElement || !heroSection) return;
+
+    // Calculate distance for highlighting (each word gets some scroll distance)
+    const scrollPerWord = 150; // pixels of scroll per word
+    const totalScrollDistance = totalWords * scrollPerWord;
+
+    // Create GSAP timeline with ScrollTrigger
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: heroElement,
+        start: "top top",
+        end: `+=${totalScrollDistance}`,
+        scrub: 0.5, // Smooth scrubbing
+        pin: true, // Pin hero section during scroll
+        anticipatePin: 1,
+        pinSpacing: true,
+        onUpdate: (self) => {
+          // Calculate progress (0 to 1)
+          const progress = self.progress;
+          
+          // Calculate how many words should be highlighted
+          const highlightedWordCount = Math.floor(progress * totalWords);
+          
+          // Update slogan word highlights
+          sloganWords.forEach((word, index) => {
+            if (index < highlightedWordCount) {
+              word.classList.add('highlight');
+            } else {
+              word.classList.remove('highlight');
+            }
+          });
+
+          // Check if all slogan words are highlighted
+          const allSloganWordsHighlighted = highlightedWordCount >= totalSloganWords;
+          
+          // Pop button immediately when all slogan words are highlighted (independent of scroll)
+          if (allSloganWordsHighlighted && button && !buttonPopped) {
+            // All slogan words highlighted - pop the button immediately (only once)
+            buttonPopped = true;
+            gsap.to(button, {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "back.out(1.7)", // Bounce effect
+              delay: 0.2
+            });
+          } else if (button && !allSloganWordsHighlighted) {
+            // Reset button if not all slogan words highlighted
+            buttonPopped = false;
+            gsap.set(button, {
+              opacity: 0,
+              scale: 0.5,
+              y: 20
+            });
+          }
+
+          // Update subtitle word highlights (after all slogan words)
+          if (allSloganWordsHighlighted) {
+            const subtitleHighlightCount = highlightedWordCount - totalSloganWords;
+            subtitleWords.forEach((word, index) => {
+              if (index < subtitleHighlightCount) {
+                word.classList.add('highlight');
+              } else {
+                word.classList.remove('highlight');
+              }
+            });
+            
+            // Add highlight class to content when subtitle starts highlighting
+            if (!this.heroContent!.classList.contains('highlight')) {
+              this.heroContent!.classList.add('highlight');
+            }
+          } else {
+            // Remove subtitle highlights if not all slogan words are done
+            subtitleWords.forEach(word => word.classList.remove('highlight'));
+            if (this.heroContent!.classList.contains('highlight')) {
+              this.heroContent!.classList.remove('highlight');
+            }
+          }
+        },
+        onEnter: () => {
+          // Ensure no highlights when entering
+          sloganWords.forEach(word => word.classList.remove('highlight'));
+          subtitleWords.forEach(word => word.classList.remove('highlight'));
+          if (this.heroContent!.classList.contains('highlight')) {
+            this.heroContent!.classList.remove('highlight');
+          }
+          // Hide button and reset pop flag
+          buttonPopped = false;
+          if (button) {
+            gsap.set(button, {
+              opacity: 0,
+              scale: 0.5,
+              y: 20
+            });
+          }
+        },
+        onLeave: () => {
+          // Ensure all highlights when leaving
+          sloganWords.forEach(word => word.classList.add('highlight'));
+          subtitleWords.forEach(word => word.classList.add('highlight'));
+          if (!this.heroContent!.classList.contains('highlight')) {
+            this.heroContent!.classList.add('highlight');
+          }
+          // Show button with pop animation
+          if (button) {
+            gsap.to(button, {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "back.out(1.7)"
+            });
+          }
+        },
+        onEnterBack: () => {
+          // Reset highlights when scrolling back
+          sloganWords.forEach(word => word.classList.remove('highlight'));
+          subtitleWords.forEach(word => word.classList.remove('highlight'));
+          if (this.heroContent!.classList.contains('highlight')) {
+            this.heroContent!.classList.remove('highlight');
+          }
+          // Hide button and reset pop flag
+          buttonPopped = false;
+          if (button) {
+            gsap.set(button, {
+              opacity: 0,
+              scale: 0.5,
+              y: 20
+            });
+          }
+        }
+      }
+    });
+
+    // Store ScrollTrigger instance for cleanup
+    (this as any)._heroScrollTrigger = tl.scrollTrigger;
   }
 
 }

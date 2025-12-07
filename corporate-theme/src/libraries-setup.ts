@@ -187,7 +187,7 @@ import 'magnific-popup/dist/magnific-popup.css';
 // 11. SMOOTH SCROLLBAR - Custom Scrollbar
 // ============================================
 import SmoothScrollbar from 'smooth-scrollbar';
-import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll';
+// import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'; // Uncomment if needed
 
 // Ví dụ sử dụng:
 // SmoothScrollbar.use(OverscrollPlugin);

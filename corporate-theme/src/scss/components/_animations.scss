@@ -414,6 +414,16 @@
   }
 }
 
+// Hero Highlight - Smooth highlight effect when scrolling
+@keyframes heroHighlight {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 // ============================================
 // Animation Utility Classes
 // ============================================
