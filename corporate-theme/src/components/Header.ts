@@ -524,7 +524,7 @@ export class Header {
           // Check if all slogan words are highlighted
           const allSloganWordsHighlighted = highlightedWordCount >= totalSloganWords;
           
-          // Pop button immediately when all slogan words are highlighted (independent of scroll)
+          // Pop button immediately when all slogan words are highlighted (only once, independent of scroll)
           if (allSloganWordsHighlighted && button && !buttonPopped) {
             // All slogan words highlighted - pop the button immediately (only once)
             buttonPopped = true;
@@ -536,15 +536,8 @@ export class Header {
               ease: "back.out(1.7)", // Bounce effect
               delay: 0.2
             });
-          } else if (button && !allSloganWordsHighlighted) {
-            // Reset button if not all slogan words highlighted
-            buttonPopped = false;
-            gsap.set(button, {
-              opacity: 0,
-              scale: 0.5,
-              y: 20
-            });
           }
+          // Note: Button will not be reset when scrolling back up - it stays popped once triggered
 
           // Update subtitle word highlights (after all slogan words)
           if (allSloganWordsHighlighted) {
@@ -576,9 +569,8 @@ export class Header {
           if (this.heroContent!.classList.contains('highlight')) {
             this.heroContent!.classList.remove('highlight');
           }
-          // Hide button and reset pop flag
-          buttonPopped = false;
-          if (button) {
+          // Only reset button if it hasn't been popped yet (first time entering)
+          if (!buttonPopped && button) {
             gsap.set(button, {
               opacity: 0,
               scale: 0.5,
@@ -611,15 +603,8 @@ export class Header {
           if (this.heroContent!.classList.contains('highlight')) {
             this.heroContent!.classList.remove('highlight');
           }
-          // Hide button and reset pop flag
-          buttonPopped = false;
-          if (button) {
-            gsap.set(button, {
-              opacity: 0,
-              scale: 0.5,
-              y: 20
-            });
-          }
+          // Keep button popped if it was already popped (don't reset)
+          // Button will remain visible if it was already triggered
         }
       }
     });
