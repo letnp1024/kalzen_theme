@@ -5,6 +5,8 @@
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 import { ParallaxScroll } from '../../helpers/ParallaxScroll';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export class Services {
   private swiper: Swiper | null = null;
@@ -54,6 +56,9 @@ export class Services {
 
     // Initialize parallax for service card images
     this.initParallax();
+
+    // Initialize scroll-controlled carousel
+    this.initScrollCarousel();
   }
 
   /**
@@ -74,6 +79,67 @@ export class Services {
         });
         this.parallaxInstances.push(parallaxInstance);
       }
+    });
+  }
+
+  /**
+   * Initialize scroll-controlled carousel
+   * Carousel slides based on scroll position, section is pinned until all slides are shown
+   */
+  private initScrollCarousel(): void {
+    if (!this.swiper) return;
+
+    const servicesSection = document.querySelector('.services');
+    if (!servicesSection) return;
+
+    // Register ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Get total number of slides
+    const totalSlides = this.swiper.slides.length;
+    if (totalSlides === 0) return;
+
+    // Calculate scroll distance per slide
+    const scrollPerSlide = 300; // pixels of scroll per slide
+    const totalScrollDistance = totalSlides * scrollPerSlide;
+
+    // Create ScrollTrigger to control carousel based on scroll
+    ScrollTrigger.create({
+      trigger: servicesSection,
+      start: "center center", // Start when section is at center of viewport
+      end: `+=${totalScrollDistance}`,
+      scrub: 1, // Smooth scrubbing
+      pin: true, // Pin services section during scroll
+      anticipatePin: 1,
+      pinSpacing: true,
+      onUpdate: (self) => {
+        // Calculate progress (0 to 1)
+        const progress = self.progress;
+        
+        // Calculate which slide should be shown
+        const targetSlideIndex = Math.floor(progress * totalSlides);
+        
+        // Clamp to valid slide index
+        const slideIndex = Math.min(targetSlideIndex, totalSlides - 1);
+        
+        // Update Swiper to show the correct slide
+        if (this.swiper && this.swiper.activeIndex !== slideIndex) {
+          this.swiper.slideTo(slideIndex, 0); // 0 = no animation, instant
+        }
+      },
+      onEnter: () => {
+        // Reset to first slide when entering
+        if (this.swiper) {
+          this.swiper.slideTo(0, 0);
+        }
+      },
+      onLeave: () => {
+        // Show last slide when leaving
+        if (this.swiper) {
+          this.swiper.slideTo(totalSlides - 1, 0);
+        }
+      },
+      invalidateOnRefresh: true
     });
   }
 
