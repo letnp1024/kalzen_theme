@@ -4,6 +4,8 @@
  */
 
 import { ParallaxScroll } from '../../helpers/ParallaxScroll';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export class AboutUs {
   private playButton: HTMLElement | null;
@@ -37,6 +39,45 @@ export class AboutUs {
 
     // Initialize parallax scroll effect
     this.initParallax();
+
+    // Initialize pan animations
+    this.initPanAnimations();
+  }
+
+  /**
+   * Initialize pan animations for entire card
+   * Card and image slide from left to right
+   * Triggers once when section enters viewport
+   */
+  private initPanAnimations(): void {
+    const aboutSection = document.querySelector('.about-us');
+    const cardElement = document.querySelector('.about-us__card');
+
+    if (!aboutSection || !cardElement) return;
+
+    // Register ScrollTrigger (safe to call multiple times)
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Set initial position - card starts from left
+    gsap.set(cardElement, { x: -200, opacity: 0 });
+
+    // Pan animation - triggers once when section enters viewport
+    let hasAnimated = false;
+    ScrollTrigger.create({
+      trigger: aboutSection,
+      start: "top 80%",
+      onEnter: () => {
+        if (!hasAnimated) {
+          hasAnimated = true;
+          gsap.to(cardElement, {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out"
+          });
+        }
+      }
+    });
   }
 
   /**

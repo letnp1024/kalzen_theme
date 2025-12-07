@@ -4,6 +4,8 @@
  */
 
 import { ParallaxScroll } from '../../helpers/ParallaxScroll';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export class Contact {
   private imageElement: HTMLElement | null;
@@ -23,6 +25,45 @@ export class Contact {
   private init(): void {
     // Initialize parallax scroll effect
     this.initParallax();
+
+    // Initialize pan animations
+    this.initPanAnimations();
+  }
+
+  /**
+   * Initialize pan animations for entire card
+   * Card and image slide from right to left
+   * Triggers once when section enters viewport
+   */
+  private initPanAnimations(): void {
+    const contactSection = document.querySelector('.contact');
+    const cardElement = document.querySelector('.contact__card');
+
+    if (!contactSection || !cardElement) return;
+
+    // Register ScrollTrigger (safe to call multiple times)
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Set initial position - card starts from right
+    gsap.set(cardElement, { x: 200, opacity: 0 });
+
+    // Pan animation - triggers once when section enters viewport
+    let hasAnimated = false;
+    ScrollTrigger.create({
+      trigger: contactSection,
+      start: "top 80%",
+      onEnter: () => {
+        if (!hasAnimated) {
+          hasAnimated = true;
+          gsap.to(cardElement, {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out"
+          });
+        }
+      }
+    });
   }
 
   /**
