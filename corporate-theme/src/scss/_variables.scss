@@ -1,77 +1,210 @@
 // ============================================
 // Corporate Theme Color Palette
 // ============================================
+// Industry-appropriate color system following modern design standards
+// Based on professional blue palette with semantic color support
 
 // Import sass:color module để sử dụng các hàm color mới
 @use "sass:color";
 
-// Primary Colors
-$primary: #1A73E8; // Modern blue
-$primary-dark: color.adjust($primary, $lightness: -10%);
-$primary-light: color.adjust($primary, $lightness: 10%);
+// ============================================
+// Primary Color System
+// ============================================
+$primary: #1A73E8; // Modern blue - primary brand color
+$primary-50: #E8F0FE; // Lightest tint
+$primary-100: #D2E3FC; // Very light tint
+$primary-200: #AECBFA; // Light tint
+$primary-300: #8AB4F8; // Medium light tint
+$primary-400: #669DF6; // Medium tint
+$primary-500: $primary; // Base primary
+$primary-600: #1557B8; // Medium dark shade
+$primary-700: #0F4C81; // Dark shade (formerly secondary-navy)
+$primary-800: #0B3A62; // Very dark shade
+$primary-900: #072843; // Darkest shade
 
+// Primary Variants (for backward compatibility and semantic use)
+$primary-dark: color.adjust($primary, $lightness: -15%);
+$primary-light: color.adjust($primary, $lightness: 15%);
 
-// Primary Gradient (center gradient with primary and primary lighten 50%)
-// Linear gradient: primary at center, primary-light-50 at edges
+// Primary Gradients
 $primary-gradient: linear-gradient(
   to right,
-  $primary 0%,
-  $primary-light 50%,
-  $primary 100%
+  $primary-600 0%,
+  $primary-400 50%,
+  $primary-600 100%
 );
 
-// Primary Radial Gradient (from center)
 $primary-gradient-radial: radial-gradient(
   circle at center,
-  $primary-dark 0%,
-  $primary-light 100%
+  $primary-700 0%,
+  $primary-300 100%
 );
 
-// Secondary Colors
-$secondary-navy: #0F4C81; // Deep navy blue
-$secondary-light-blue: #E8EEF5; // Light gray-blue
+// ============================================
+// Secondary Color System
+// ============================================
+$secondary: #0F4C81; // Deep navy blue - secondary brand color
+$secondary-50: #E8EEF5; // Lightest tint (formerly secondary-light-blue)
+$secondary-100: #D1D9E6; // Very light tint (formerly secondary-gray)
+$secondary-200: #B3C4D7; // Light tint
+$secondary-300: #95AFC8; // Medium light tint
+$secondary-400: #779AB9; // Medium tint
+$secondary-500: $secondary; // Base secondary
+$secondary-600: #0C3D68; // Medium dark shade
+$secondary-700: #092E4F; // Dark shade
+$secondary-800: #061F36; // Very dark shade
+$secondary-900: #03101D; // Darkest shade
+
+// Legacy Secondary Color Names (for backward compatibility)
+$secondary-navy: $secondary-500;
+$secondary-light-blue: $secondary-50;
 $secondary-white-blue: #F4F7FA; // White-blue tint
-$secondary-gray: #D1D9E6; // Neutral gray
+$secondary-gray: $secondary-100;
 
-// Additional Colors
-$white: #ffffff;
+// ============================================
+// Neutral Color System
+// ============================================
+$white: #FFFFFF;
 $black: #000000;
-$text-dark: #212529;
-$text-light: #6c757d;
+$gray-50: #F9FAFB;
+$gray-100: #F3F4F6;
+$gray-200: #E5E7EB;
+$gray-300: #D1D5DB;
+$gray-400: #9CA3AF;
+$gray-500: #6B7280;
+$gray-600: #4B5563;
+$gray-700: #374151;
+$gray-800: #1F2937;
+$gray-900: #111827;
 
-// Overlay
+// ============================================
+// Semantic Color System
+// ============================================
+// Success Colors
+$success: #10B981;
+$success-light: #D1FAE5;
+$success-dark: #059669;
+
+// Warning Colors
+$warning: #F59E0B;
+$warning-light: #FEF3C7;
+$warning-dark: #D97706;
+
+// Error/Danger Colors
+$error: #EF4444;
+$error-light: #FEE2E2;
+$error-dark: #DC2626;
+
+// Info Colors
+$info: #3B82F6;
+$info-light: #DBEAFE;
+$info-dark: #2563EB;
+
+// ============================================
+// Text Color System
+// ============================================
+$text-primary: #111827; // Primary text (darkest)
+$text-secondary: #4B5563; // Secondary text (medium)
+$text-tertiary: #6B7280; // Tertiary text (light)
+$text-disabled: #9CA3AF; // Disabled text
+$text-inverse: #FFFFFF; // Text on dark backgrounds
+$text-dark: $text-primary; // Legacy support
+$text-light: $text-secondary; // Legacy support
+
+// ============================================
+// Background Color System
+// ============================================
+$bg-primary: $white;
+$bg-secondary: $gray-50;
+$bg-tertiary: $gray-100;
+$bg-dark: $gray-900;
+$bg-overlay: rgba(0, 0, 0, 0.5);
+
+// ============================================
+// Overlay System
+// ============================================
 $hero-overlay-opacity: 0.25; // Primary color overlay opacity for hero images
 $hero-gradient-overlay-opacity: 0.6; // Gradient overlay opacity (darker than hero-overlay)
 
 // ============================================
-// Typography
+// Typography System
 // ============================================
-$font-family-base: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-$font-size-base: 1rem;
-$line-height-base: 1.6;
+// Typography variables are now in _typography.scss
+// Forward typography to make variables available to files that import this file
+@forward "typography";
+@use "typography" as *;
 
 // ============================================
-// Spacing
+// Spacing System
 // ============================================
-$spacer: 1rem;
+// Based on 8px grid system for consistent spacing
+// All spacing values are multiples of 8px (0.5rem base)
+
+// Base Spacer Unit
+$spacer-base: 0.5rem; // 8px - base unit
+$spacer: 1rem; // 16px - standard unit (for backward compatibility)
+
+// Spacing Scale (8px increments)
+$spacing-0: 0;
+$spacing-1: 0.125rem;  // 2px
+$spacing-2: 0.25rem;   // 4px
+$spacing-3: 0.375rem;  // 6px
+$spacing-4: 0.5rem;    // 8px (base unit)
+$spacing-5: 0.625rem;  // 10px
+$spacing-6: 0.75rem;   // 12px
+$spacing-8: 1rem;      // 16px
+$spacing-10: 1.25rem;  // 20px
+$spacing-12: 1.5rem;   // 24px
+$spacing-16: 2rem;     // 32px
+$spacing-20: 2.5rem;   // 40px
+$spacing-24: 3rem;     // 48px
+$spacing-32: 4rem;     // 64px
+$spacing-40: 5rem;     // 80px
+$spacing-48: 6rem;     // 96px
+$spacing-56: 7rem;     // 112px
+$spacing-64: 8rem;     // 128px
+
+// Legacy Spacers Map (for Bootstrap compatibility)
 $spacers: (
   0: 0,
-  1: $spacer * 0.25,
-  2: $spacer * 0.5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
+  1: $spacing-2,      // 4px
+  2: $spacing-4,      // 8px
+  3: $spacing-8,      // 16px
+  4: $spacing-12,     // 24px
+  5: $spacing-24,     // 48px
+  6: $spacing-32,     // 64px
+  7: $spacing-40,     // 80px
+  8: $spacing-48,     // 96px
 );
 
+// Padding Scale
+$padding-xs: $spacing-2;   // 4px
+$padding-sm: $spacing-4;  // 8px
+$padding-md: $spacing-8;  // 16px
+$padding-lg: $spacing-12; // 24px
+$padding-xl: $spacing-16; // 32px
+$padding-2xl: $spacing-24; // 48px
+$padding-3xl: $spacing-32; // 64px
+
+// Margin Scale
+$margin-xs: $spacing-2;   // 4px
+$margin-sm: $spacing-4;   // 8px
+$margin-md: $spacing-8;   // 16px
+$margin-lg: $spacing-12; // 24px
+$margin-xl: $spacing-16; // 32px
+$margin-2xl: $spacing-24; // 48px
+$margin-3xl: $spacing-32; // 64px
+
 // Section Spacing - Khoảng cách giữa các section (dùng cho padding-top)
-$section-spacing: 100px;
-$section-spacing-md: 80px; // Tablet
-$section-spacing-sm: 60px; // Mobile
+// Based on 8px grid: 96px (12 * 8px), 80px (10 * 8px), 64px (8 * 8px)
+$section-spacing: $spacing-48;      // 96px (Desktop)
+$section-spacing-md: $spacing-40;   // 80px (Tablet)
+$section-spacing-sm: $spacing-32;   // 64px (Mobile)
 
 // Section Padding - Padding bên trong section (thường nhỏ hơn spacing)
-$section-padding: 60px; // Desktop: ~80% của section-spacing (100px)
-$section-padding-md: 40px; // Tablet: ~75% của section-spacing-md (80px)
-$section-padding-sm: 30px; // Mobile: ~67% của section-spacing-sm (60px)
+$section-padding: $spacing-32;      // 64px (Desktop)
+$section-padding-md: $spacing-24;   // 48px (Tablet)
+$section-padding-sm: $spacing-20;   // 40px (Mobile)
 
 // ============================================
 // Border Radius

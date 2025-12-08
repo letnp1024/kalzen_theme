@@ -3,6 +3,7 @@
 // ============================================
 @use "../variables" as *;
 @use "../mixins" as *;
+@use "../typography" as *;
 
 .contact {
   @include section-margin-bottom;
@@ -159,7 +160,7 @@
     border: 2px solid $secondary-gray;
     border-radius: $border-radius;
     font-size: 1rem;
-    font-family: $font-family-base;
+    font-family: $font-family-primary;
     transition: $transition-base;
     background-color: $white;
 

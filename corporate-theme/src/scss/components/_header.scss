@@ -5,6 +5,7 @@
 @use "../variables" as *;
 @use "../mixins" as *;
 @use "animations" as *;
+@use "../typography" as *;
 
 .header {
   @include section-margin-bottom;

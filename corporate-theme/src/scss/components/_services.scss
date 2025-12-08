@@ -3,6 +3,7 @@
 // ============================================
 @use "../variables" as *;
 @use "../mixins" as *;
+@use "../typography" as *;
 
 .services {
   @include section-margin-bottom;

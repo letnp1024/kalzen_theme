@@ -4,6 +4,9 @@
 // File này forward các modules chính để có thể import dễ dàng
 // Sử dụng: @use "index" as *; hoặc @use "index";
 
+// Forward Typography (must be before variables as variables uses typography)
+@forward "typography";
+
 // Forward Variables
 @forward "variables";
 
