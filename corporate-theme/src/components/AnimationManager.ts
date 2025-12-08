@@ -184,7 +184,6 @@ export class AnimationManager {
       }
       
       // Animate overlay elements on card hover
-      const overlay = card.querySelector('.services__card-overlay');
       const overlayTitle = card.querySelector('.services__card-overlay-title');
       const overlayIcon = card.querySelector('.services__card-overlay-icon');
       const overlayDescription = card.querySelector('.services__card-description');
