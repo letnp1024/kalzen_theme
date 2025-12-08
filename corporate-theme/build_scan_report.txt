@@ -1,0 +1,38 @@
+Build scan summary (npm run build)
+=================================
+
+Blocking errors detected
+------------------------
+1) Unused declarations (remove or use)
+   - src/components/about-us/AboutUs.ts:176  private openVideoModal(...) never used.
+   - src/main.ts:60,66,72,78   services/aboutUs/testimonial/contact variables declared but unused.
+
+2) Missing type declarations for external libs
+   - AOS: src/components/AnimationManager.ts, src/libraries-setup.ts
+     * Install typings: npm i -D @types/aos
+     * OR add declaration: declare module 'aos';
+   - Swiper CSS modules: src/libraries-setup.ts (swiper/css, navigation, pagination, effect-fade)
+     * Ensure swiper is installed; if using Swiper v8+, import paths are valid but need types. Install: npm i swiper @types/node (for css imports) or adjust tsconfig to allowImportingTsExtensions / resolveJsonModule.
+   - Isotope: src/libraries-setup.ts
+     * Install typings: npm i -D @types/isotope-layout
+     * OR add declaration: declare module 'isotope-layout';
+
+3) Type mismatches (Element vs HTMLElement)
+   - src/components/AnimationManager.ts lines ~106, 111, 115, 119, 124, 421
+     * Cast querySelector results to HTMLElement (e.g., const el = document.querySelector(...) as HTMLElement | null) before passing to Animations.* (which expects HTMLElement).
+
+4) Unused import
+   - src/components/Header.ts: ScrollTrigger imported but not used. Remove import or register plugin explicitly (gsap.registerPlugin(ScrollTrigger)).
+
+Non-blocking / stylistic
+------------------------
+- text-stroke warnings in SCSS are cosmetic; -webkit-text-stroke is the supported property.
+
+Suggested fix order
+-------------------
+1) Add/declare typings: @types/aos, @types/isotope-layout, ensure swiper package is installed and configured for TypeScript CSS imports.
+2) Remove or use unused functions/variables (AboutUs.openVideoModal, services/aboutUs/testimonial/contact in main.ts).
+3) Cast Elements to HTMLElement before passing to Animations in AnimationManager.
+4) Remove unused ScrollTrigger import or register plugin explicitly if needed.
+
+After changes, rerun: npm run build
