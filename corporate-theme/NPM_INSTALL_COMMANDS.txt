@@ -1,0 +1,252 @@
+DANH SÁCH TẤT CẢ LỆNH NPM ĐỂ CÀI THƯ VIỆN TRONG DỰ ÁN
+=====================================================
+
+CÁCH 1: CÀI TẤT CẢ CÙNG LÚC (KHUYẾN NGHỊ)
+==========================================
+npm install
+
+Lệnh này sẽ tự động cài tất cả dependencies và devDependencies từ package.json
+
+
+CÁCH 2: CÀI TỪNG THƯ VIỆN RIÊNG LẺ
+===================================
+
+A. DEPENDENCIES (Production - Thư viện chạy trong production)
+--------------------------------------------------------------
+
+1. Font Awesome Icons:
+   npm install @fortawesome/fontawesome-free
+
+2. Bootstrap CSS Framework:
+   npm install bootstrap
+
+3. GSAP (GreenSock Animation Platform):
+   npm install gsap
+
+4. Swiper (Carousel/Slider):
+   npm install swiper
+
+5. AOS (Animate On Scroll):
+   npm install aos
+
+6. jQuery:
+   npm install jquery
+
+7. Animate.css:
+   npm install animate.css
+
+8. Isotope Layout:
+   npm install isotope-layout
+
+9. jQuery Ripples (Water ripple effect):
+   npm install jquery.ripples
+
+10. Magnific Popup (Lightbox):
+    npm install magnific-popup
+
+11. Particles.js:
+    npm install particles.js
+
+12. Smooth Scrollbar:
+    npm install smooth-scrollbar
+
+13. Waypoints:
+    npm install waypoints
+
+14. WOW.js (Scroll animations):
+    npm install wow.js
+
+15. TypeScript Node Types:
+    npm install @types/node
+
+
+B. DEV DEPENDENCIES (Development - Chỉ dùng khi phát triển)
+-----------------------------------------------------------
+
+1. TypeScript:
+   npm install --save-dev typescript
+
+2. Vite (Build tool):
+   npm install --save-dev vite
+
+3. SASS (CSS Preprocessor):
+   npm install --save-dev sass
+
+4. TypeScript Definitions cho AOS:
+   npm install --save-dev @types/aos
+
+5. TypeScript Definitions cho Isotope:
+   npm install --save-dev @types/isotope-layout
+
+6. TypeScript Definitions cho jQuery:
+   npm install --save-dev @types/jquery
+
+
+CÁCH 3: CÀI TẤT CẢ BẰNG MỘT LỆNH DÀI
+=====================================
+npm install @fortawesome/fontawesome-free bootstrap gsap swiper aos jquery animate.css isotope-layout jquery.ripples magnific-popup particles.js smooth-scrollbar waypoints wow.js @types/node --save
+
+npm install typescript vite sass @types/aos @types/isotope-layout @types/jquery --save-dev
+
+
+CÁCH 4: CÀI THEO NHÓM CHỨC NĂNG
+=================================
+
+Nhóm Animation:
+  npm install gsap aos animate.css wow.js
+
+Nhóm UI Components:
+  npm install bootstrap swiper magnific-popup
+
+Nhóm Utilities:
+  npm install jquery jquery.ripples particles.js smooth-scrollbar waypoints isotope-layout
+
+Nhóm Icons & Fonts:
+  npm install @fortawesome/fontawesome-free
+
+Nhóm Build Tools:
+  npm install --save-dev typescript vite sass
+
+Nhóm Type Definitions:
+  npm install --save-dev @types/aos @types/isotope-layout @types/jquery @types/node
+
+
+THÔNG TIN CHI TIẾT TỪNG THƯ VIỆN
+=================================
+
+PRODUCTION DEPENDENCIES:
+------------------------
+
+1. @fortawesome/fontawesome-free (^7.1.0)
+   - Mục đích: Icon library
+   - Sử dụng: Icons trong UI
+   - Lệnh: npm install @fortawesome/fontawesome-free
+
+2. bootstrap (^5.3.8)
+   - Mục đích: CSS framework
+   - Sử dụng: Grid system, components, utilities
+   - Lệnh: npm install bootstrap
+
+3. gsap (^3.12.5)
+   - Mục đích: Animation library
+   - Sử dụng: Animations, timelines, scroll triggers
+   - Lệnh: npm install gsap
+
+4. swiper (^11.2.10)
+   - Mục đích: Touch slider/carousel
+   - Sử dụng: Image sliders, carousels
+   - Lệnh: npm install swiper
+
+5. aos (^2.3.4)
+   - Mục đích: Animate on scroll
+   - Sử dụng: Scroll-triggered animations
+   - Lệnh: npm install aos
+
+6. jquery (^3.7.1)
+   - Mục đích: DOM manipulation
+   - Sử dụng: jQuery plugins, DOM queries
+   - Lệnh: npm install jquery
+
+7. animate.css (^4.1.1)
+   - Mục đích: CSS animation library
+   - Sử dụng: Pre-built CSS animations
+   - Lệnh: npm install animate.css
+
+8. isotope-layout (^3.0.6)
+   - Mục đích: Grid layout library
+   - Sử dụng: Masonry, filtering layouts
+   - Lệnh: npm install isotope-layout
+
+9. jquery.ripples (^0.6.3)
+   - Mục đích: Water ripple effect
+   - Sử dụng: Interactive background effects
+   - Lệnh: npm install jquery.ripples
+
+10. magnific-popup (^1.1.0)
+    - Mục đích: Lightbox/modal
+    - Sử dụng: Image galleries, modals
+    - Lệnh: npm install magnific-popup
+
+11. particles.js (^2.0.0)
+    - Mục đích: Particle effects
+    - Sử dụng: Animated particle backgrounds
+    - Lệnh: npm install particles.js
+
+12. smooth-scrollbar (^8.8.1)
+    - Mục đích: Custom scrollbar
+    - Sử dụng: Styled scrollbars
+    - Lệnh: npm install smooth-scrollbar
+
+13. waypoints (^4.0.1)
+    - Mục đích: Scroll waypoints
+    - Sử dụng: Trigger actions at scroll points
+    - Lệnh: npm install waypoints
+
+14. wow.js (^1.2.2)
+    - Mục đích: Scroll animations
+    - Sử dụng: Reveal animations on scroll
+    - Lệnh: npm install wow.js
+
+15. @types/node (^24.10.1)
+    - Mục đích: TypeScript types for Node.js
+    - Sử dụng: Type definitions
+    - Lệnh: npm install @types/node
+
+
+DEV DEPENDENCIES:
+-----------------
+
+1. typescript (~5.9.3)
+   - Mục đích: TypeScript compiler
+   - Sử dụng: Type checking, compilation
+   - Lệnh: npm install --save-dev typescript
+
+2. vite (^7.2.4)
+   - Mục đích: Build tool and dev server
+   - Sử dụng: Development server, bundling
+   - Lệnh: npm install --save-dev vite
+
+3. sass (^1.94.2)
+   - Mục đích: SASS/SCSS compiler
+   - Sử dụng: Compile SCSS to CSS
+   - Lệnh: npm install --save-dev sass
+
+4. @types/aos (^3.0.7)
+   - Mục đích: TypeScript types for AOS
+   - Sử dụng: Type definitions
+   - Lệnh: npm install --save-dev @types/aos
+
+5. @types/isotope-layout (^3.0.15)
+   - Mục đích: TypeScript types for Isotope
+   - Sử dụng: Type definitions
+   - Lệnh: npm install --save-dev @types/isotope-layout
+
+6. @types/jquery (^3.5.29)
+   - Mục đích: TypeScript types for jQuery
+   - Sử dụng: Type definitions
+   - Lệnh: npm install --save-dev @types/jquery
+
+
+LỆNH CÀI ĐẶT ĐẦY ĐỦ (COPY & PASTE)
+====================================
+
+# Cài tất cả Production Dependencies:
+npm install @fortawesome/fontawesome-free@^7.1.0 bootstrap@^5.3.8 gsap@^3.12.5 swiper@^11.2.10 aos@^2.3.4 jquery@^3.7.1 animate.css@^4.1.1 isotope-layout@^3.0.6 jquery.ripples@^0.6.3 magnific-popup@^1.1.0 particles.js@^2.0.0 smooth-scrollbar@^8.8.1 waypoints@^4.0.1 wow.js@^1.2.2 @types/node@^24.10.1
+
+# Cài tất cả Dev Dependencies:
+npm install --save-dev typescript@~5.9.3 vite@^7.2.4 sass@^1.94.2 @types/aos@^3.0.7 @types/isotope-layout@^3.0.15 @types/jquery@^3.5.29
+
+
+LỆNH CÀI ĐẶT ĐƠN GIẢN (KHUYẾN NGHỊ)
+====================================
+# Chỉ cần chạy 1 lệnh này (nếu đã có package.json):
+npm install
+
+
+LƯU Ý
+=====
+- Nếu đã có package.json và package-lock.json, chỉ cần: npm install
+- Nếu cài từng thư viện, npm sẽ tự động cập nhật package.json
+- Dùng --save-dev cho devDependencies
+- Dùng --save (hoặc không có flag) cho dependencies
+- Sau khi cài, kiểm tra node_modules/ đã có thư viện chưa

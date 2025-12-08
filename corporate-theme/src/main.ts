@@ -4,6 +4,8 @@
 
 // Import Main Styles (SCSS)
 import './scss/main.scss'
+// Import Font Awesome locally (no CDN)
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
 // Import and initialize libraries
 import { initializeLibraries } from './libraries-setup'

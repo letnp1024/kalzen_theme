@@ -1,0 +1,58 @@
+Hướng dẫn build ra template tĩnh (HTML/CSS/JS) giống template thuần
+==================================================================
+
+Mục tiêu: sau build có cấu trúc dist/ kiểu template:
+- dist/index.html
+- dist/assets/js/*.js
+- dist/assets/css/*.css
+- dist/assets/img/* (ảnh)
+- dist/assets/fonts/* (font)
+
+1) Cài phụ thuộc
+----------------
+- npm install
+
+2) Cấu hình Vite (đã thiết lập)
+-------------------------------
+- File: vite.config.ts
+  - base: './'  (đường dẫn tương đối để mở file trực tiếp)
+  - build.output đặt sẵn:
+    - JS: assets/js/[name].js
+    - CSS: assets/css/[name].css
+    - Ảnh: assets/img/*
+    - Font: assets/fonts/*
+  - SASS: includePaths từ node_modules (qua sassOptions)
+
+3) Dùng tài nguyên local, không dùng CDN
+----------------------------------------
+- Xóa link CDN Font Awesome trong index.html.
+- Import Font Awesome local (đã cài npm):
+  - Thêm vào src/main.ts:
+    import '@fortawesome/fontawesome-free/css/all.min.css';
+- Các thư viện CSS/JS khác: import từ node_modules để Vite bundle.
+
+4) Ảnh / Font / file tĩnh
+-------------------------
+- Đặt vào thư mục public/ (giữ cấu trúc img/, fonts/… như template cũ).
+- Vite sẽ copy nguyên trạng sang dist/assets/img, dist/assets/fonts.
+
+5) Build
+--------
+- npm run build
+- Kết quả nằm trong dist/ với cấu trúc assets như trên.
+
+6) Xem kết quả
+--------------
+- Mở file trực tiếp: dist/index.html (nhờ base: './').
+  Lưu ý: một số trình duyệt vẫn hạn chế module qua file://; nếu gặp lỗi, dùng server tĩnh.
+- Hoặc xem qua server tĩnh (an toàn hơn):
+  - npm run preview   (http://localhost:4173)
+  - hoặc: npx http-server dist
+
+Tóm tắt nhanh
+-------------
+- npm install
+- Đã cấu hình base: './', output assets phân thư mục js/css/img/fonts
+- Import Font Awesome từ npm, bỏ CDN
+- Đưa ảnh/font vào public/
+- npm run build  → dist/ là template HTML/CSS/JS thuần

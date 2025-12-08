@@ -1,0 +1,222 @@
+HƯỚNG DẪN SETUP DỰ ÁN CORPORATE THEME TỪ ĐẦU ĐẾN CUỐI
+=====================================================
+
+1. YÊU CẦU HỆ THỐNG
+===================
+- Node.js: phiên bản 16 trở lên (khuyến nghị 18+)
+- npm: đi kèm với Node.js (hoặc yarn nếu thích)
+- Git: để clone repository (nếu có)
+
+Kiểm tra phiên bản:
+  node --version
+  npm --version
+
+2. CÀI ĐẶT NODE.JS (nếu chưa có)
+==================================
+- Truy cập: https://nodejs.org/
+- Tải và cài đặt phiên bản LTS (Long Term Support)
+- Sau khi cài, mở lại terminal/command prompt
+- Kiểm tra: node --version và npm --version
+
+3. TẢI/XUỐNG DỰ ÁN
+===================
+- Nếu có Git repository:
+  git clone <repository-url>
+  cd corporate-theme
+
+- Nếu có file ZIP:
+  - Giải nén vào thư mục mong muốn
+  - Mở terminal tại thư mục dự án
+
+4. CÀI ĐẶT DEPENDENCIES (THƯ VIỆN)
+===================================
+- Mở terminal tại thư mục dự án (corporate-theme/)
+- Chạy lệnh:
+  npm install
+
+- Lệnh này sẽ:
+  + Đọc package.json
+  + Tải và cài đặt tất cả dependencies:
+    * @fortawesome/fontawesome-free (Font Awesome icons)
+    * bootstrap (CSS framework)
+    * gsap (animations)
+    * swiper (carousel/slider)
+    * aos (animate on scroll)
+    * jquery (DOM manipulation)
+    * và các thư viện khác...
+  + Tải devDependencies:
+    * typescript (type checking)
+    * vite (build tool)
+    * sass (CSS preprocessor)
+    * @types/* (TypeScript definitions)
+
+- Thời gian: 2-5 phút tùy tốc độ mạng
+- Kết quả: tạo thư mục node_modules/ chứa tất cả thư viện
+
+5. CẤU HÌNH DỰ ÁN (đã được thiết lập sẵn)
+===========================================
+- vite.config.ts: cấu hình build tool
+  + base: './' (đường dẫn tương đối)
+  + assetsDir: 'assets' (thư mục assets)
+  + Output: assets/js/, assets/css/, assets/img/, assets/fonts/
+
+- tsconfig.json: cấu hình TypeScript
+  + Đã thiết lập compiler options
+
+- package.json: danh sách dependencies và scripts
+  + Scripts:
+    * npm run dev: chạy development server
+    * npm run build: build production
+    * npm run preview: xem production build
+
+6. CHẠY DEVELOPMENT SERVER
+===========================
+- Chạy lệnh:
+  npm run dev
+
+- Vite sẽ:
+  + Compile TypeScript → JavaScript
+  + Compile SASS → CSS
+  + Bundle các thư viện
+  + Khởi động dev server tại http://localhost:5173
+
+- Mở trình duyệt: http://localhost:5173
+- Hot reload: tự động reload khi sửa code
+
+7. BUILD PRODUCTION
+===================
+- Chạy lệnh:
+  npm run build
+
+- Quá trình:
+  1. TypeScript compilation (tsc)
+  2. Vite build:
+     - Bundle JS → dist/assets/js/
+     - Compile SASS → dist/assets/css/
+     - Copy assets → dist/assets/img/, dist/assets/fonts/
+     - Copy public/ → dist/
+     - Tạo index.html với đường dẫn tương đối
+
+- Kết quả: thư mục dist/ chứa:
+  - index.html
+  - assets/js/*.js
+  - assets/css/*.css
+  - assets/img/* (từ public/images/)
+  - assets/fonts/* (từ public/fonts/ hoặc bundle từ npm)
+
+8. XEM PRODUCTION BUILD
+========================
+- Cách 1: Dùng Vite preview (khuyến nghị)
+  npm run preview
+  → Mở: http://localhost:4173
+
+- Cách 2: Dùng http-server
+  npx http-server dist
+  → Mở: http://localhost:8080
+
+- Cách 3: Mở file trực tiếp (có thể gặp lỗi CORS)
+  Mở: dist/index.html
+  Lưu ý: một số trình duyệt chặn module script qua file://
+
+9. CẤU TRÚC THƯ MỤC SAU KHI SETUP
+==================================
+corporate-theme/
+├── node_modules/          # Thư viện đã cài (npm install)
+├── public/                # File tĩnh (ảnh, font)
+│   ├── images/
+│   └── fonts/
+├── src/                   # Source code
+│   ├── components/        # TypeScript components
+│   ├── scss/             # SASS files
+│   └── main.ts           # Entry point
+├── dist/                  # Build output (sau npm run build)
+├── index.html             # HTML template
+├── package.json           # Dependencies & scripts
+├── vite.config.ts         # Vite configuration
+└── tsconfig.json          # TypeScript configuration
+
+10. CÁC THƯ VIỆN CHÍNH ĐÃ CÀI
+==============================
+Dependencies (production):
+- @fortawesome/fontawesome-free: Icons
+- bootstrap: CSS framework
+- gsap: Animations
+- swiper: Carousel/slider
+- aos: Animate on scroll
+- jquery: DOM manipulation
+- animate.css: CSS animations
+- isotope-layout: Grid layout
+- và các thư viện khác...
+
+DevDependencies (development):
+- typescript: Type checking
+- vite: Build tool
+- sass: CSS preprocessor
+- @types/*: TypeScript definitions
+
+11. TROUBLESHOOTING (XỬ LÝ LỖI)
+================================
+Lỗi: "command not found: npm"
+→ Cài đặt Node.js chưa đúng hoặc chưa restart terminal
+
+Lỗi: "Cannot find module"
+→ Chạy lại: npm install
+
+Lỗi: "Port already in use"
+→ Đổi port trong vite.config.ts hoặc đóng process đang dùng port
+
+Lỗi: "TypeScript errors"
+→ Kiểm tra tsconfig.json và sửa lỗi type
+
+Lỗi: "SASS compilation failed"
+→ Kiểm tra cú pháp SCSS và import paths
+
+Lỗi: "Font Awesome icons không hiển thị"
+→ Đảm bảo đã import trong main.ts:
+  import '@fortawesome/fontawesome-free/css/all.min.css'
+
+12. CÁC LỆNH THƯỜNG DÙNG
+=========================
+npm install              # Cài đặt dependencies
+npm run dev              # Chạy development server
+npm run build            # Build production
+npm run preview          # Xem production build
+npm install <package>    # Cài thư viện mới
+npm uninstall <package>  # Gỡ thư viện
+
+13. QUY TRÌNH LÀM VIỆC
+======================
+1. npm install (lần đầu hoặc sau khi thêm dependencies)
+2. npm run dev (phát triển)
+3. Sửa code trong src/
+4. Xem kết quả tại http://localhost:5173
+5. npm run build (khi hoàn thành)
+6. npm run preview (kiểm tra production build)
+7. Lấy thư mục dist/ để deploy
+
+14. LƯU Ý QUAN TRỌNG
+===================
+- KHÔNG commit node_modules/ vào Git (đã có .gitignore)
+- LUÔN commit package.json và package-lock.json
+- Sau khi clone, LUÔN chạy npm install
+- Khi thêm thư viện mới, cập nhật package.json
+- Build output (dist/) có thể xóa và build lại
+
+15. TÀI LIỆU THAM KHẢO
+======================
+- Vite: https://vitejs.dev/
+- TypeScript: https://www.typescriptlang.org/
+- SASS: https://sass-lang.com/
+- Bootstrap: https://getbootstrap.com/
+- Font Awesome: https://fontawesome.com/
+
+TÓM TẮT NHANH
+=============
+1. Cài Node.js (nếu chưa có)
+2. Mở terminal tại thư mục dự án
+3. npm install
+4. npm run dev (để phát triển)
+5. npm run build (để build production)
+6. npm run preview (để xem production)
+
+Chúc bạn setup thành công! 🚀

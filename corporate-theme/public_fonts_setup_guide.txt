@@ -1,0 +1,72 @@
+Hướng dẫn đưa Font và Icon vào public/ để build có đầy đủ
+==========================================================
+
+1) Font Awesome - Copy font files vào public/fonts
+--------------------------------------------------
+- Font Awesome đã được cài qua npm: @fortawesome/fontawesome-free
+- Font files nằm tại: node_modules/@fortawesome/fontawesome-free/webfonts/
+
+Cách copy (Windows PowerShell):
+  cd corporate-theme
+  Copy-Item -Path "node_modules\@fortawesome\fontawesome-free\webfonts\*" -Destination "public\fonts\" -Recurse -Force
+
+Hoặc thủ công:
+  1. Mở: node_modules/@fortawesome/fontawesome-free/webfonts/
+  2. Copy tất cả file (.woff, .woff2, .ttf, .eot, .svg) vào public/fonts/
+
+2) Cấu trúc public/ sau khi copy
+---------------------------------
+public/
+  ├── fonts/
+  │   ├── fa-brands-400.woff2
+  │   ├── fa-brands-400.woff
+  │   ├── fa-regular-400.woff2
+  │   ├── fa-regular-400.woff
+  │   ├── fa-solid-900.woff2
+  │   ├── fa-solid-900.woff
+  │   └── ... (các file font khác)
+  ├── images/
+  │   └── ... (ảnh hiện có)
+  └── vite.svg
+
+3) Vite xử lý public/ như thế nào
+----------------------------------
+- Mọi file trong public/ sẽ được copy NGUYÊN TRẠNG vào dist/ (root của dist)
+- KHÔNG vào assets/ (assets chỉ chứa file được import/bundle từ src/)
+- Vì vậy: public/fonts/ → dist/fonts/ (không phải dist/assets/fonts/)
+
+4) Cấu hình để font từ public/ vào assets/fonts/
+-------------------------------------------------
+Nếu muốn font từ public/ vào dist/assets/fonts/ (theo cấu trúc template):
+- Option 1: Import font trong CSS/SCSS thay vì để trong public/
+  - Import trong src/scss/main.scss:
+    @font-face {
+      font-family: 'Font Awesome';
+      src: url('@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2') format('woff2');
+      ...
+    }
+  - Vite sẽ tự động bundle vào assets/fonts/
+
+- Option 2: Giữ font trong public/fonts/ và dùng đường dẫn /fonts/ trong CSS
+  - CSS sẽ trỏ đến /fonts/... (từ root dist)
+  - Không vào assets/fonts/ nhưng vẫn hoạt động
+
+5) Build và kiểm tra
+--------------------
+- npm run build
+- Kiểm tra dist/:
+  - dist/fonts/ (nếu copy vào public/fonts/)
+  - dist/assets/fonts/ (nếu import trong CSS/SCSS)
+  - dist/assets/css/ (CSS đã bundle font paths)
+
+6) Lưu ý quan trọng
+-------------------
+- Font Awesome CSS (all.min.css) đã được import trong main.ts
+- CSS này sẽ tự động tìm font trong node_modules khi dev
+- Khi build, Vite sẽ bundle font vào assets/fonts/ theo cấu hình
+- Nếu muốn font riêng trong public/, cần đảm bảo CSS trỏ đúng đường dẫn
+
+Khuyến nghị: Để Vite tự bundle font từ npm (không cần copy vào public/)
+- Đã import '@fortawesome/fontawesome-free/css/all.min.css' trong main.ts
+- Vite sẽ tự động bundle font vào dist/assets/fonts/ khi build
+- Không cần copy thủ công vào public/ (trừ khi muốn dùng font riêng)
