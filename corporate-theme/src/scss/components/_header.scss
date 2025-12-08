@@ -447,24 +447,20 @@
         // Ban đầu: chữ viền trắng nhưng rỗng bên trong (outline text)
         color: transparent;
         -webkit-text-stroke: 2px $white;
-        text-stroke: 2px $white;
-        transition: color 0.3s ease-out, -webkit-text-stroke 0.3s ease-out, text-stroke 0.3s ease-out;
+        transition: color 0.3s ease-out, -webkit-text-stroke 0.3s ease-out;
 
         @media (max-width: 768px) {
           -webkit-text-stroke: 1.5px $white;
-          text-stroke: 1.5px $white;
         }
 
         @media (max-width: 576px) {
           -webkit-text-stroke: 1.5px $white;
-          text-stroke: 1.5px $white;
         }
 
         // Khi highlight: chữ trắng đầy
         &.highlight {
           color: $white;
           -webkit-text-stroke: 0;
-          text-stroke: 0;
         }
       }
     }

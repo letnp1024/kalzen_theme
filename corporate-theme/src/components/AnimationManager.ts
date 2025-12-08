@@ -95,11 +95,11 @@ export class AnimationManager {
    * Initialize Hero section animations
    */
   initHeroAnimations(): void {
-    const heroContent = document.querySelector('.header__hero-content');
-    const heroSlogan = document.querySelector('.header__hero-slogan');
-    const heroSubtitle = document.querySelector('.header__hero-subtitle');
-    const heroCTA = document.querySelector('.header__hero-cta');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const heroContent = document.querySelector('.header__hero-content') as HTMLElement | null;
+    const heroSlogan = document.querySelector('.header__hero-slogan') as HTMLElement | null;
+    const heroSubtitle = document.querySelector('.header__hero-subtitle') as HTMLElement | null;
+    const heroCTA = document.querySelector('.header__hero-cta') as HTMLElement | null;
+    const scrollIndicator = document.querySelector('.scroll-indicator') as HTMLElement | null;
 
     // Hero content fade-in on load
     if (heroContent) {
@@ -417,7 +417,7 @@ export class AnimationManager {
     }
 
     // Testimonial card containers fade-in animation
-    const testimonialCards = document.querySelectorAll('.testimonial__card-container');
+    const testimonialCards = document.querySelectorAll('.testimonial__card-container') as NodeListOf<HTMLElement>;
     Animations.stagger(testimonialCards, 150, 200);
 
     // Avatar card animations with scale and rotation

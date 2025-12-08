@@ -7,7 +7,7 @@ Blocking errors detected
    - src/components/about-us/AboutUs.ts:176  private openVideoModal(...) never used.
    - src/main.ts:60,66,72,78   services/aboutUs/testimonial/contact variables declared but unused.
 
-2) Missing type declarations for external libs
+2 x) Missing type declarations for external libs
    - AOS: src/components/AnimationManager.ts, src/libraries-setup.ts
      * Install typings: npm i -D @types/aos
      * OR add declaration: declare module 'aos';
@@ -17,7 +17,7 @@ Blocking errors detected
      * Install typings: npm i -D @types/isotope-layout
      * OR add declaration: declare module 'isotope-layout';
 
-3) Type mismatches (Element vs HTMLElement)
+3 x) Type mismatches (Element vs HTMLElement) 
    - src/components/AnimationManager.ts lines ~106, 111, 115, 119, 124, 421
      * Cast querySelector results to HTMLElement (e.g., const el = document.querySelector(...) as HTMLElement | null) before passing to Animations.* (which expects HTMLElement).
 

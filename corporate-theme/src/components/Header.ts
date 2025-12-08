@@ -5,7 +5,6 @@
 
 import { Animations } from './Animations';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export class Header {
   private slideshowContainer: HTMLElement | null;

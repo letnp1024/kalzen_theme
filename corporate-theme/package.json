@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.7",
+    "@types/isotope-layout": "^3.0.15",
     "@types/jquery": "^3.5.29",
     "sass": "^1.94.2",
     "typescript": "~5.9.3",
@@ -16,6 +18,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",
+    "@types/node": "^24.10.1",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.8",

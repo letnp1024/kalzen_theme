@@ -57,25 +57,25 @@ document.addEventListener('DOMContentLoaded', () => {
   app.insertAdjacentHTML('beforeend', servicesHTML);
   
   // Initialize Services Component (Carousel)
-  const services = new Services();
+  new Services();
   
   // Insert About Us HTML after services
   app.insertAdjacentHTML('beforeend', aboutUsHTML);
   
   // Initialize About Us Component
-  const aboutUs = new AboutUs();
+  new AboutUs();
   
   // Insert Testimonial HTML after about us
   app.insertAdjacentHTML('beforeend', testimonialHTML);
   
   // Initialize Testimonial Component (Carousel)
-  const testimonial = new Testimonial();
+  new Testimonial();
   
   // Insert Contact HTML after testimonial
   app.insertAdjacentHTML('beforeend', contactHTML);
   
   // Initialize Contact Component (Parallax)
-  const contact = new Contact();
+  new Contact();
   
   // Initialize Contact Form
   initContactForm();
