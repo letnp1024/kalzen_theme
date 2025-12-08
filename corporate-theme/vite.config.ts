@@ -2,10 +2,11 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
+  base: './',
   css: {
     preprocessorOptions: {
       scss: {
-        includePaths: ['node_modules'],
+        loadPaths: ['node_modules'],
       },
     },
   },
